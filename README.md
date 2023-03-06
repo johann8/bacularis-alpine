@@ -1,4 +1,22 @@
-# Bacularis and Bacula community edition
+# Bacularis and Bacula community edition - Docker
+
+- [Docker Images](#docker-images)
+- [Bacula](#bacula)
+  - [Bacula linux binaries](#bacula-linux-binaries)
+  - [Bacula windows binaries](#bacula-windows-binaries)
+  - [Create bacula client config files](#create-bacula-client-config-files)
+- [Bacularis](#bacularis---the-bacula-web-interface)
+  - [For Linux](#for-linux)
+  - [For Windows](#for-windows)
+- [Install docker container](#install-docker-container)
+
+## Docker images
+
+Images are based on [Ubuntu 22](https://hub.docker.com/repository/docker/johann8/bacularis/general) or [Alpine 3.17](https://hub.docker.com/repository/docker/johann8/bacularis/general)
+
+| pull | size ubuntu | size alpine |
+|:---------------------------------------:|:---------------------------------------:|:-------------------------------------------------:|
+| ![Docker Pulls](https://img.shields.io/docker/pulls/johann8/bacularis?style=flat-square) | ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/johann8/bacularis/latest-ubuntu) | ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/johann8/bacularis/latest-alpine) |
 
 ## Bacula
 [Bacula](https://www.bacula.org/) is a set of Open Source, computer programs that permit you to manage backup, recovery, and verification of computer data across a network of computers.
@@ -12,6 +30,62 @@
 ## Bacula windows binaries
 [Bacula](https://www.bacula.org/)  windows binaries can be found on [Bacula website](https://www.bacula.org/binary-download-center/).
 
+## Install docker container
+
+- Create folders, set permissions
+
+```bash
+mkdir -p /opt/bacularis/data/{bacularis,bacula,pgsql}
+mkdir -p /opt/bacularis/data/bacularis/www/bacularis-api/API/{Config,Logs}
+mkdir -p /opt/bacularis/data/bacularis/www/bacularis-web/Web/{Config,Logs}
+mkdir -p /opt/bacularis/data/bacula/{config,data}     
+mkdir -p /opt/bacularis/data/bacula/config/etc/bacula
+mkdir -p /opt/bacularis/data/bacula/data/director
+mkdir -p /opt/bacularis/data/pgsql/{data,socket}
+mkdir -p /opt/bacularis/data/smtp/secret
+tree -d -L 4 /opt/bacularis
+```
+- Create [docker-compose.yml](https://github.com/johann8/bacularis-alpine/blob/master/docker-compose.yml)\
+or
+- Download all files below
+
+```bash
+cd /opt/bacularis
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/docker-compose.yml
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/docker-compose.override.yml
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/1_create_new_bacula_client_linux--server_side_template.sh
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/2_create_new_bacula_client_linux--client_side_template.sh
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/3_create_new_bacula_client_windows--server_side_template.sh
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bacula-dir_template.conf
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bacula-dir_template_windows.conf
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bacula-fd_template.conf
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bconsole_template.conf
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/.env
+```
+- Customize variables in all files
+- Generate `admin` user `password` [here](https://www.web2generators.com/apache-tools/htpasswd-generator). You need both passwords decrypt and encrypted
+
+```
+# Example
+Username: admin
+Password: N04X1UYYbZ2J69sAYLb0N04
+```
+
+- Customize the file `docker-compose.override.yml` if you use [trafik](https://traefik.io/)
+- Run docker container
+
+```bash
+cd /opt/bacularis
+docker-compose up -d
+docker-compose ps
+docker-compose logs
+docker-compose logs bacularis
+```
+
+- Starte `http://dost.domain.com:9097` or via traefik `http://host.domain.com`
+- Login with your `admin` user credentials
+- Check the `bacula director` settings
+
 ## Create bacula client config files
 You can create client config files automatically. For this you can find some scripts and templates on the repo. You load the files into a directory and start the bash scripts. Run `scriptname -h / --help` to see help.
 
@@ -21,11 +95,12 @@ You can create client config files automatically. For this you can find some scr
 - Download files below in a directory
 
 ```bash
-wget https://raw.githubusercontent.com/johann8/bacularis/master/1_create_new_bacula_client_linux--server_side_template.sh
-wget https://raw.githubusercontent.com/johann8/bacularis/master/2_create_new_bacula_client_linux--client_side_template.sh
-wget https://raw.githubusercontent.com/johann8/bacularis/master/bacula-dir_template.conf
-wget https://raw.githubusercontent.com/johann8/bacularis/master/bacula-fd_template.conf
-wget https://raw.githubusercontent.com/johann8/bacularis/master/bconsole_template.conf
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/1_create_new_bacula_client_linux--server_side_template.sh
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/2_create_new_bacula_client_linux--client_side_template.sh
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bacula-dir_template.conf
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bacula-dir_template_windows.conf
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bacula-fd_template.conf
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bconsole_template.conf
 ```
 - To create configuration for Bacula `Linux` client on server side, you need to pass two parameters to script 1, namely `client name` and `IP address`
 - To create configuration for Bacula `Linux` client on client side, you need to pass only one parametes to script 2, namely `client name`
@@ -72,9 +147,10 @@ systemctl restart bacula-fd.service
 - Download files below in a directory
 
 ```bash
-wget https://raw.githubusercontent.com/johann8/bacularis/master/3_create_new_bacula_client_windows--server_side_template.sh
-wget https://raw.githubusercontent.com/johann8/bacularis/master/bacula-dir_template_windows.conf
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/3_create_new_bacula_client_windows--server_side_template.sh
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bacula-dir_template_windows.conf
 ```
+
 - To create configuration for Bacula `Windows` client on server side, you need to pass two parameters to script 3, namely `client name` and `IP address`
 - The MD5 Bacula client password is automatically created by the script
 - When everything is ready, run the scripts to create bacula windows client config files. Here is an example:
@@ -112,7 +188,7 @@ As a result comes something like this: `192.168.155.15`
 - Download [Bacula](https://www.bacula.org/) windows binaries from [Bacula website](https://www.bacula.org/binary-download-center/)
 - Run bacula installation
 - Fill in the data as in the picture
-![Bacula_Windows_Install](https://raw.githubusercontent.com/johann8/bacularis/master/docs/assets/screenshots/bacula_win_install.png)
+![Bacula_Windows_Install](https://raw.githubusercontent.com/johann8/bacularis-alpine/master/docs/assets/screenshots/bacula_win_install.png)
 - Finish the installation
 - Open the file `C:\Program Files\Bacula\bacula-fd.conf`
 - Find the section

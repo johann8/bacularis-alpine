@@ -61,6 +61,7 @@ wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bacula-di
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bacula-fd_template.conf
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bconsole_template.conf
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/.env
+chmod u+x *.sh
 ```
 - Customize variables in all files
 - Generate `admin` user `password` [here](https://www.web2generators.com/apache-tools/htpasswd-generator). You need both passwords decrypt and encrypted
@@ -101,6 +102,7 @@ wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bacula-di
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bacula-dir_template_windows.conf
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bacula-fd_template.conf
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bconsole_template.conf
+chmod u+x *.sh
 ```
 - To create configuration for Bacula `Linux` client on server side, you need to pass two parameters to script 1, namely `client name` and `IP address`
 - To create configuration for Bacula `Linux` client on client side, you need to pass only one parametes to script 2, namely `client name`
@@ -149,6 +151,7 @@ systemctl restart bacula-fd.service
 ```bash
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/3_create_new_bacula_client_windows--server_side_template.sh
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bacula-dir_template_windows.conf
+chmod u+x *.sh
 ```
 
 - To create configuration for Bacula `Windows` client on server side, you need to pass two parameters to script 3, namely `client name` and `IP address`

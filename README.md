@@ -92,46 +92,46 @@ docker-compose logs bacularis
 
 | Variable | Value | Description |
 |:------------------------|:-------------------------|:-------------------------------------------------|
-| TZ |   |   |
-| DB_INIT |   |   |
-| DB_UPDATE |   |   |
-| DB_HOST |   |   |
-| DB_PORT |   |   |
-| DB_NAME |   |   |
-| DB_USER |   |   |
-| DB_PASSWORD |   |   |
-| DB_ADMIN_USER |   |   |
-| DB_ADMIN_PASSWORD |   |   |
-| BUILD_DAEMON_NAME |   |   |
-| DESIRED_DAEMON_NAME |   |   |
-| WEB_ADMIN_USER |   |   |
-| WEB_ADMIN_PASSWORD_DECRYPT |   |   |
-| WEB_ADMIN_PASSWORD_ENCRYPTED |   |   |
-| SMTP_HOST |   |   |
-| ADMIN_MAIL |   |   |
-| ADD_STORAGE_POOL |   |   |
-| DOCKER_HOST_IP |   |   |
-| DOCKERDIR |   |   |
-| PORT_BACULARIS |   |   |
-| PORT_STORAGE |   |   |
-| PORT_DIRECTOR |   |   |
+| TZ | Europe/Berlin | Time zone |
+| DB_INIT | true or false | true - required for DB init only (first run) |
+| DB_UPDATE | false or true | true - required for DB update only |
+| DB_HOST | bacula-db | PostgreSQL db host name  |
+| DB_PORT | 5432 | PostgreSQL db port  |
+| DB_NAME | bacula  | bacula database name |
+| DB_USER | bacula  | bacula user name  |
+| DB_PASSWORD | MyDBPassword  | password use to access to the bareos database |
+| DB_ADMIN_USER | postgres  | PostgreSQL root user name (required for DB init only) |
+| DB_ADMIN_PASSWORD | MyDBAdminPassword | Password for PostgreSQL root user (required for DB init only) |
+| BUILD_DAEMON_NAME | build-3-17-x86_64 |   |
+| DESIRED_DAEMON_NAME | bacula |   |
+| WEB_ADMIN_USER | admin  | User name for bacula web interface |
+| WEB_ADMIN_PASSWORD_DECRYPT | MyWebPassword  | User password for bacula web interface |
+| WEB_ADMIN_PASSWORD_ENCRYPTED | $apr1$1fvq6ki0$AScxxxx |   |
+| SMTP_HOST | smtp.mydomain.de  |hostname of smtp server  |
+| ADMIN_MAIL | admin@mydomain.de | your email address |
+| ADD_STORAGE_POOL | true |   |
+| DOCKER_HOST_IP | 192.168.2.10 | IP address of docker host |
+| DOCKERDIR | /opt/bacularis | Docker container config and data folder |
+| PORT_BACULARIS | 9097 | Bacula port for Web interface |
+| PORT_STORAGE | 9103  | Bacula port for storage daemon: bacula-sd |
+| PORT_DIRECTOR | 9101  | Bacula port for director daemon: bacula-dir  |
 
 - bacula-db docker container
 
 | Variable | Value | Description |
 |:------------------------|:-------------------------:|:-------------------------------------------------|
-| TZ |   |   |
-| DB_ADMIN_USER |   |   |
-| DB_ADMIN_PASSWORD |   |   |
+| TZ | Europe/Berlin | Time zone |
+| DB_ADMIN_USER | postgres | PostgreSQL root user name (required for DB init only) |
+| DB_ADMIN_PASSWORD | MyPostgresRootPassword | Password for PostgreSQL root user (required for DB init only) |
 
 - smtpd docker container
 
 | Variable | Value | Description |
 |:------------------------|:-------------------------:|:-------------------------------------------------|
-| HOSTNAME_SMTP |   |   |
-| SMARTHOST |   |   |
-| SMTP_USERNAME |   |   |
-| SMTP_PASSWORD |   |   |
+| HOSTNAME_SMTP | bacularis.mydomain.de |   |
+| SMARTHOST | smtp.mydomain.de |  |
+| SMTP_USERNAME | backup@mydomain.de |   |
+| SMTP_PASSWORD | SmtpUserPassword |   |
 
 
 ## Access WebUI

@@ -107,7 +107,7 @@ docker-compose logs bacularis
 | WEB_ADMIN_USER | admin | User name for bacula web interface |
 | WEB_ADMIN_PASSWORD_DECRYPT | MyWebPassword  | User password (decrypt) for bacula web interface |
 | WEB_ADMIN_PASSWORD_ENCRYPTED | $apr1$1fvq6ki0$AScxxxx | User password (encrypted) for bacula web interface  |
-| SMTP_HOST | smtp.mydomain.de  |hostname of smtp server  |
+| SMTP_HOST | smtpd:8025 | docker container smtp service name |
 | ADMIN_MAIL | admin@mydomain.de | your email address |
 | ADD_STORAGE_POOL | true | true - standard pool are replaced by Incremental, Differential and Full |
 | DOCKER_HOST_IP | 192.168.2.10 | IP address of docker host |
@@ -128,10 +128,10 @@ docker-compose logs bacularis
 
 | Variable | Value | Description |
 |:------------------------|:-------------------------|:-------------------------------------------------|
-| HOSTNAME_SMTP | bacularis.mydomain.de |   |
-| SMARTHOST | smtp.mydomain.de |  |
-| SMTP_USERNAME | backup@mydomain.de |   |
-| SMTP_PASSWORD | SmtpUserPassword |   |
+| HOSTNAME_SMTP | bacularis.mydomain.de | hostname of smtp server |
+| SMARTHOST | smtp.mydomain.de | smtp server FQDN |
+| SMTP_USERNAME | backup@mydomain.de | smtp server user name |
+| SMTP_PASSWORD | SmtpUserPassword | smtp server user password |
 
 
 ## Access WebUI

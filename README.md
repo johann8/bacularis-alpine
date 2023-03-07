@@ -109,7 +109,7 @@ docker-compose logs bacularis
 | WEB_ADMIN_PASSWORD_ENCRYPTED | $apr1$1fvq6ki0$AScxxxx | User password (encrypted) for bacula web interface  |
 | SMTP_HOST | smtpd:8025 | docker container smtp service - name & port |
 | ADMIN_MAIL | admin@mydomain.de | your email address |
-| ADD_STORAGE_POOL | true | true - standard pool are replaced by Incremental, Differential and Full |
+| ADD_STORAGE_POOL | true or false | true - standard pool are replaced by Incremental, Differential and Full |
 | DOCKER_HOST_IP | 192.168.2.10 | IP address of docker host |
 | DOCKERDIR | /opt/bacularis | Docker container config and data folder |
 | PORT_BACULARIS | 9097 | Bacula port for Web interface |

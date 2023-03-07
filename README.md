@@ -93,44 +93,44 @@ docker-compose logs bacularis
 | Variable | Value | Description |
 |:------------------------|:-------------------------|:-------------------------------------------------|
 | TZ |   |   |
-| DB_INIT  |   |   |
-| DB_UPDATE  |   |   |
-| DB_HOST  |   |   |
-| DB_PORT  |   |   |
-| DB_NAME  |   |   |
-| DB_USER  |   |   |
-| DB_PASSWORD  |   |   |
-| DB_ADMIN_USER  |   |   |
-| DB_ADMIN_PASSWORD  |   |   |
-| BUILD_DAEMON_NAME  |   |   |
-| DESIRED_DAEMON_NAME  |   |   |
-| WEB_ADMIN_USER  |   |   |
-| WEB_ADMIN_PASSWORD_DECRYPT  |   |   |
-| WEB_ADMIN_PASSWORD_ENCRYPTED  |   |   |
-| SMTP_HOST  |   |   |
-| ADMIN_MAIL  |   |   |
-| ADD_STORAGE_POOL  |   |   |
-|  DOCKER_HOST_IP  |   |   |
-| DOCKERDIR  |   |   |
-| PORT_BACULARIS  |   |   |
-| PORT_STORAGE  |   |   |
-| PORT_DIRECTOR  |   |   |
+| DB_INIT |   |   |
+| DB_UPDATE |   |   |
+| DB_HOST |   |   |
+| DB_PORT |   |   |
+| DB_NAME |   |   |
+| DB_USER |   |   |
+| DB_PASSWORD |   |   |
+| DB_ADMIN_USER |   |   |
+| DB_ADMIN_PASSWORD |   |   |
+| BUILD_DAEMON_NAME |   |   |
+| DESIRED_DAEMON_NAME |   |   |
+| WEB_ADMIN_USER |   |   |
+| WEB_ADMIN_PASSWORD_DECRYPT |   |   |
+| WEB_ADMIN_PASSWORD_ENCRYPTED |   |   |
+| SMTP_HOST |   |   |
+| ADMIN_MAIL |   |   |
+| ADD_STORAGE_POOL |   |   |
+| DOCKER_HOST_IP |   |   |
+| DOCKERDIR |   |   |
+| PORT_BACULARIS |   |   |
+| PORT_STORAGE |   |   |
+| PORT_DIRECTOR |   |   |
 
 - bacula-db docker container
 
 | Variable | Value | Description |
 |:------------------------|:-------------------------:|:-------------------------------------------------|
 | TZ |   |   |
-| DB_ADMIN_USER  |   |   |
-| DB_ADMIN_PASSWORD  |   |   |
+| DB_ADMIN_USER |   |   |
+| DB_ADMIN_PASSWORD |   |   |
 
 - smtpd docker container
 
 | Variable | Value | Description |
 |:------------------------|:-------------------------:|:-------------------------------------------------|
-| HOSTNAME_SMTP  |   |   |
-| SMARTHOST  |   |   |
-| SMTP_USERNAM  |   |   |
+| HOSTNAME_SMTP |   |   |
+| SMARTHOST |   |   |
+| SMTP_USERNAME |   |   |
 | SMTP_PASSWORD |   |   |
 
 

@@ -9,6 +9,9 @@
   - [For Linux](#for-linux)
   - [For Windows](#for-windows)
 - [Install docker container](#install-docker-container)
+  - [Docker variables](#docker-variables)
+  - [Access WebUI](#access-webui)
+  - [Access bconsole](#access-bconsole)
   - [Firewall rules](#firewall-rules)
 
 ## Docker images
@@ -83,10 +86,29 @@ docker-compose ps
 docker-compose logs
 docker-compose logs bacularis
 ```
+# Docker variables
+| Variable | Value | Description |
+|------------------------:|:-------------------------:|:-------------------------------------------------|
 
-- Starte `http://dost.domain.com:9097` or via traefik `http://host.domain.com`
-- Login with your `admin` user credentials
+
+## Access WebUI
+
+- Open `http://host.domain.com:9097` or via traefik `https://host.domain.com` in your web browser then sign-in
+- Login with your `admin` user credentials (user: `admin` / pass: `<ADMIN_PASSWORD_DECRYPT>`)
 - Check the `bacula director` settings
+
+## Access bconsole
+
+- With docker
+```bash
+docker exec -it bacularis bconsole
+```
+
+- With docker-compose
+```bash
+cd /opt/bacularis
+docker-compose exec bacularis bconsole
+```
 
 ## Firewall rules
 | port | protocol | description |

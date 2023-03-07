@@ -105,8 +105,8 @@ docker-compose logs bacularis
 | BUILD_DAEMON_NAME | build-3-17-x86_64 |  from alpine assigned bacula daemons name |
 | DESIRED_DAEMON_NAME | bacula | desired name for bacula daemons |
 | WEB_ADMIN_USER | admin | User name for bacula web interface |
-| WEB_ADMIN_PASSWORD_DECRYPT | MyWebPassword  | User password for bacula web interface |
-| WEB_ADMIN_PASSWORD_ENCRYPTED | $apr1$1fvq6ki0$AScxxxx |   |
+| WEB_ADMIN_PASSWORD_DECRYPT | MyWebPassword  | User password (decrypt) for bacula web interface |
+| WEB_ADMIN_PASSWORD_ENCRYPTED | $apr1$1fvq6ki0$AScxxxx | User password (encrypted) for bacula web interface  |
 | SMTP_HOST | smtp.mydomain.de  |hostname of smtp server  |
 | ADMIN_MAIL | admin@mydomain.de | your email address |
 | ADD_STORAGE_POOL | true | true - standard pool are replaced by Incremental, Differential and Full |

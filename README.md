@@ -9,6 +9,7 @@
   - [For Linux](#for-linux)
   - [For Windows](#for-windows)
 - [Install docker container](#install-docker-container)
+  - [Firewall rules](#firewall-rules)
 
 ## Docker images
 
@@ -86,6 +87,25 @@ docker-compose logs bacularis
 - Starte `http://dost.domain.com:9097` or via traefik `http://host.domain.com`
 - Login with your `admin` user credentials
 - Check the `bacula director` settings
+
+## Firewall rules
+| port | protocol | description |
+|-------------------:|:--------------------:|:-------------------------------------------------|
+| 9102 | TCP |For bacula-fd file daemon |
+| 9103 | TCP |For bacula-sd storage daemon |
+| 9097 | TCP |For Bacularis-APP without RP (Traefik) |
+|  443 | TCP |For Bacularis-APP with RP (Traefik) |
+
+- Example for CentOS/Oracle/Rocky Linux
+
+```bash
+firewall-cmd --permanent --zone=public --add-port=9102/tcp
+firewall-cmd --permanent --zone=public --add-port=9103/tcp
+firewall-cmd --permanent --zone=public --add-port=9097/tcp
+firewall-cmd --permanent --zone=public --add-port=443/tcp
+firewall-cmd --reload
+firewall-cmd --list-all
+```
 
 ## Create bacula client config files
 You can create client config files automatically. For this you can find some scripts and templates on the repo. You load the files into a directory and start the bash scripts. Run `scriptname -h / --help` to see help.

@@ -102,14 +102,14 @@ docker-compose logs bacularis
 | DB_PASSWORD | MyDBPassword  | password use to access to the bareos database |
 | DB_ADMIN_USER | postgres  | PostgreSQL root user name (required for DB init only) |
 | DB_ADMIN_PASSWORD | MyDBAdminPassword | Password for PostgreSQL root user (required for DB init only) |
-| BUILD_DAEMON_NAME | build-3-17-x86_64 |   |
-| DESIRED_DAEMON_NAME | bacula |   |
-| WEB_ADMIN_USER | admin  | User name for bacula web interface |
+| BUILD_DAEMON_NAME | build-3-17-x86_64 |  from alpine assigned bacula daemons name |
+| DESIRED_DAEMON_NAME | bacula | desired name for bacula daemons |
+| WEB_ADMIN_USER | admin | User name for bacula web interface |
 | WEB_ADMIN_PASSWORD_DECRYPT | MyWebPassword  | User password for bacula web interface |
 | WEB_ADMIN_PASSWORD_ENCRYPTED | $apr1$1fvq6ki0$AScxxxx |   |
 | SMTP_HOST | smtp.mydomain.de  |hostname of smtp server  |
 | ADMIN_MAIL | admin@mydomain.de | your email address |
-| ADD_STORAGE_POOL | true |   |
+| ADD_STORAGE_POOL | true | true - standard pool are replaced by Incremental, Differential and Full |
 | DOCKER_HOST_IP | 192.168.2.10 | IP address of docker host |
 | DOCKERDIR | /opt/bacularis | Docker container config and data folder |
 | PORT_BACULARIS | 9097 | Bacula port for Web interface |

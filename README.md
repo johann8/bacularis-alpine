@@ -119,7 +119,7 @@ docker-compose logs bacularis
 - bacula-db docker container
 
 | Variable | Value | Description |
-|:------------------------|:-------------------------:|:-------------------------------------------------|
+|:------------------------|:-------------------------|:-------------------------------------------------|
 | TZ | Europe/Berlin | Time zone |
 | DB_ADMIN_USER | postgres | PostgreSQL root user name (required for DB init only) |
 | DB_ADMIN_PASSWORD | MyPostgresRootPassword | Password for PostgreSQL root user (required for DB init only) |
@@ -127,7 +127,7 @@ docker-compose logs bacularis
 - smtpd docker container
 
 | Variable | Value | Description |
-|:------------------------|:-------------------------:|:-------------------------------------------------|
+|:------------------------|:-------------------------|:-------------------------------------------------|
 | HOSTNAME_SMTP | bacularis.mydomain.de |   |
 | SMARTHOST | smtp.mydomain.de |  |
 | SMTP_USERNAME | backup@mydomain.de |   |

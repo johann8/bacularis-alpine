@@ -13,6 +13,7 @@
   - [Access WebUI](#access-webui)
   - [Access bconsole](#access-bconsole)
   - [Firewall rules](#firewall-rules)
+  - [Docker Exim Relay Image](#docker-exim-relay-image)
 - [My Docker hub](#my-docker-hub)
 
 ## Docker images
@@ -172,6 +173,9 @@ firewall-cmd --permanent --zone=public --add-port=443/tcp
 firewall-cmd --reload
 firewall-cmd --list-all
 ```
+## Docker Exim Relay Image
+[Exim mail relay](https://github.com/devture/exim-relay) is a lightweight Docker image, based on the official Alpine image.
+
 
 ## Create bacula client config files
 You can create client config files automatically. For this you can find some scripts and templates on the repo. You load the files into a directory and start the bash scripts. Run `scriptname -h / --help` to see help.

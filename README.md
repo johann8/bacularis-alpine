@@ -174,7 +174,7 @@ firewall-cmd --reload
 firewall-cmd --list-all
 ```
 ## Docker Exim Relay Image
-[Exim mail relay](https://exim.org) is a lightweight Docker image, based on the official Alpine image. You can see the documentation [here](https://github.com/devture/exim-relay) 
+[Exim mail relay](https://exim.org) is a lightweight Docker image, based on the official Alpine image. You can see the documentation for this [here](https://github.com/devture/exim-relay) 
 
 
 ## Create bacula client config files

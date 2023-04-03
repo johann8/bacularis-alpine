@@ -332,7 +332,7 @@ cd -
 ![Job_Add_run_script](https://github.com/johann8/bacularis-alpine/raw/master/docs/assets/screenshots/add_run_script_job.png)
 
 - Browse to: Director => Configure director => Fileset => Name => Edit => Include #1 +Add => +Add single file/directory
-- - Fill out as in the picture (Path to the location of the script)
+- Fill out as in the picture (Var "DST" from script /var/backup/container/mysql)
 ![Fileset_Add_singe_file_directory](https://github.com/johann8/bacularis-alpine/raw/master/docs/assets/screenshots/fileset_add_single_file-directory.png)
 
 ## My Docker hub

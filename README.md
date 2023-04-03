@@ -14,6 +14,8 @@
   - [Access bconsole](#access-bconsole)
   - [Firewall rules](#firewall-rules)
   - [Docker Exim Relay Image](#docker-exim-relay-image)
+- [Backup](#backup)
+  - [Backup mysql database](#backup-mysql-database)
 - [My Docker hub](#my-docker-hub)
 
 ## Docker images
@@ -313,6 +315,25 @@ Director {
 
 - Restart Windows bacula daemon
 - Windows firewall configuration - unblock ports 9102/TCP and 9103/TCP for incoming rules
+
+# Backup
+## Backup mysql database
+
+- Download script below to the client
+
+```bash
+cd /opt/bacula/scripts/
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/scripts/backup_mysql.sh
+chmod a+x backup_mysql.sh
+cd -
+```
+- Start Bacularis-App and browse to: Director => Configure director => Job => Name => Edit => +Add => +Add Runscript block
+- Fill out as in the picture (Path to the location of the script)
+![Job_Add_run_script](https://github.com/johann8/bacularis-alpine/raw/master/docs/assets/screenshots/add_run_script_job.png)
+
+- Browse to: Director => Configure director => Fileset => Name => Edit => Include #1 +Add => +Add single file/directory
+- - Fill out as in the picture (Path to the location of the script)
+![Fileset_Add_singe_file_directory](https://github.com/johann8/bacularis-alpine/raw/master/docs/assets/screenshots/fileset_add_single_file-directory.png)
 
 ## My Docker hub
 

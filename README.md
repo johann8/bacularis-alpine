@@ -338,7 +338,7 @@ cd -
 
 ## Backup postgres database
 
-For Postgres DB backup the Script `[autopostgresqlbackup](https://github.com/k0lter/autopostgresqlbackup)` is used. There is a [docker container](https://hub.docker.com/r/rogersik/autopostgresqlbackup) with this script. You can find a description and configaration example [here](https://gitea.sikorski.cloud/RogerSik/docker-autopostgresqlbackup).
+For Postgres DB backup the Script [autopostgresqlbackup](https://github.com/k0lter/autopostgresqlbackup) is used. There is a [docker container](https://hub.docker.com/r/rogersik/autopostgresqlbackup) with this script. You can find a description and configaration example [here](https://gitea.sikorski.cloud/RogerSik/docker-autopostgresqlbackup).
 
 - Here is an example of how to backup Postgres database in a docker container
 

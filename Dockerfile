@@ -1,4 +1,4 @@
-FROM alpine:3.17
+FROM alpine:3.18
 
 LABEL maintainer="JH <jh@localhost>"
 
@@ -14,7 +14,7 @@ LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.vcs-url="https://github.com/johann8/" \
       org.label-schema.version=$VERSION
 
-ENV BACULA_VERSION=13.0.1
+ENV BACULA_VERSION=13.0.2-r1
 
 ENV BACULARIS_VERSION=1.5.0
 ENV PACKAGE_NAME=standalone
@@ -33,14 +33,30 @@ RUN if [ "${PACKAGE_NAME}" = 'standalone' ] || [ "${PACKAGE_NAME}" = 'api-dir' ]
     fi \
   && mkdir -m 0770 /run/bacula \
   && apk add --no-cache nginx curl tzdata tar \
-  && apk add --no-cache bacula bacula-pgsql bacula-client \
+  && apk add --no-cache \
+         bacula=${BACULA_VERSION} \
+         bacula-pgsql=${BACULA_VERSION} \
+         bacula-client=${BACULA_VERSION} \
   && chown root:bacula /etc/bacula /etc/bacula/bacula-fd.conf /var/lib/bacula/archive \
   && chmod 775 /etc/bacula /var/lib/bacula/archive \
   && chown bacula:bacula /run/bacula \
   && addgroup ${WEB_USER} bacula \
   && apk add --no-cache bash sudo \
-  && apk add --no-cache php${PHP_VERSION}-bcmath php${PHP_VERSION}-curl php${PHP_VERSION}-dom php${PHP_VERSION}-json php${PHP_VERSION}-ldap php${PHP_VERSION}-pdo php${PHP_VERSION}-pgsql php${PHP_VERSION}-pdo_pgsql php${PHP_VERSION}-intl php${PHP_VERSION}-ctype php${PHP_VERSION}-session php${PHP_VERSION}-fpm php${PHP_VERSION}-openssl \
-  && sed -i "/listen = / s!127.0.0.1:9000!/var/run/php-fpm.sock!; /user = / s!nobody!${WEB_USER}!; /group = / s!nobody!${WEB_USER}!; s!;listen.group!listen.group!" /etc/php81/php-fpm.d/www.conf \
+  && apk add --no-cache \
+         php${PHP_VERSION}-bcmath \
+         php${PHP_VERSION}-curl \
+         php${PHP_VERSION}-dom \
+         php${PHP_VERSION}-json \
+         php${PHP_VERSION}-ldap \
+         php${PHP_VERSION}-pdo \
+         php${PHP_VERSION}-pgsql \
+         php${PHP_VERSION}-pdo_pgsql \
+         php${PHP_VERSION}-intl \
+         php${PHP_VERSION}-ctype \
+         php${PHP_VERSION}-session \
+         php${PHP_VERSION}-fpm \
+         php${PHP_VERSION}-openssl \
+  && sed -i "/listen = / s!127.0.0.1:9000!/var/run/php-fpm.sock!; /user = / s!nobody!${WEB_USER}!; /group = / s!nobody!${WEB_USER}!; s!;listen.group!listen.group!" /etc/php${PHP_VERSION}/php-fpm.d/www.conf \
   && \
      if [ "${PACKAGE_NAME}" = 'standalone' ] || [ "${PACKAGE_NAME}" = 'api-dir' ]; then \
         # Fix job to backup catalog database

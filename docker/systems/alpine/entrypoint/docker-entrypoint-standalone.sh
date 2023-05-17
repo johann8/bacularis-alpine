@@ -8,6 +8,7 @@ trap stop SIGTERM SIGINT SIGQUIT SIGHUP ERR
 
 # set variables
 PATH_TO_BACULA_DIR="/etc/bacula/bacula-dir.conf"
+B_VERSION=$(echo ${BACULA_VERSION} | awk -F- '{print $1}')
 
 function start()
 {
@@ -338,7 +339,7 @@ fi
 
 echo ""
 echo "+----------------------------------------------------------+"
-echo "|           Starting  Bacula CE - Verison ${BACULA_VERSION}           |"
+echo "|           Starting  Bacula CE - Verison ${B_VERSION}           |"
 echo "+----------------------------------------------------------+"
 echo ""
 

@@ -1,6 +1,6 @@
 <h1 align="center">Bacularis and Bacula community edition - Docker</h1>
 
-- [Docker Images](#docker-images)
+- [Docker Images](#docker-images) [![Alpine Version](https://img.shields.io/badge/Alpine%20version-v3.18.0-blue.svg?style=flat-square)](https://alpinelinux.org/) [![Ubuntu Version](https://img.shields.io/badge/Ubuntu%20version-22.04-blue.svg?style=flat-square)](https://ubuntu.com/)
 - [Bacula](#bacula)
   - [Bacula linux binaries](#bacula-linux-binaries)
   - [Bacula windows binaries](#bacula-windows-binaries)

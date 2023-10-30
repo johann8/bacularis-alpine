@@ -46,7 +46,7 @@ services:
     depends_on:
       - bacula-db
     ports:
-      #- ${PORT_BACULARIS:-9097}:9097                            # without RP comment
+      - ${PORT_BACULARIS:-9097}:9097                            # without RP comment
       - ${PORT_STORAGE:-9103}:9103
       - ${PORT_DIRECTOR:-9101}:9101
     networks:

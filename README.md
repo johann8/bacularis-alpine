@@ -410,7 +410,7 @@ access_control:
 cd /opt/authelia && docker-compose up -d
 ```
 
-- `authelia` container host: add firewall rule for access to `auth.mydomain.de` port 9091
+- `authelia` container host: add firewall rule for access to `auth.mydomain.de` port 9091 from `bacularis` docker container host `IP: 192.168.15.16/32`
 
 ```bash
 firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" port port="9091" protocol="tcp" source address="192.168.15.16/32" accept'

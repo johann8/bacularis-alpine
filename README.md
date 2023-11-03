@@ -14,6 +14,8 @@
   - [Access bconsole](#access-bconsole)
   - [Firewall rules](#firewall-rules)
   - [Docker Exim Relay Image](#docker-exim-relay-image)
+  - [Traefik integration](#traefik-integration)
+  - [Authelia integration](#authelia-integration)
 - [Backup](#backup)
   - [Backup mysql database](#backup-mysql-database)
   - [Backup postgres database](#backup-postgres-database)
@@ -321,6 +323,100 @@ Director {
 
 - Restart Windows bacula daemon
 - Windows firewall configuration - unblock ports 9102/TCP and 9103/TCP for incoming rules
+
+## Traefik integration
+- create docker-compose.override.ym
+
+```bash
+vim docker-compose.override.yml
+---------------------------
+version: "3.0"
+networks:
+  proxy:
+    external: true
+
+services:
+  bacularis:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.bacularis-secure.entrypoints=websecure"
+      - "traefik.http.routers.bacularis-secure.rule=Host(`$HOSTNAME0.$DOMAINNAME`)"
+      - "traefik.http.routers.bacularis-secure.service=bacularis"
+      #- "traefik.http.routers.bacularis-secure.tls.certresolver=produktion"             # für eigene Zertifikate
+      - "traefik.http.routers.bacularis-secure.tls.options=modern@file"
+      - "traefik.http.routers.bacularis-secure.tls=true"
+      - "traefik.http.routers.bacularis-secure.middlewares=default-chain@file,rate-limit@file,authelia@file"
+      #- "traefik.http.routers.bacularis-secure.middlewares=default-chain@file,rate-limit@file"
+      - "traefik.http.services.bacularis.loadbalancer.sticky.cookie.httpOnly=true"
+      - "traefik.http.services.bacularis.loadbalancer.sticky.cookie.secure=true"
+      - "traefik.http.services.traefik.loadbalancer.server.port=${PORT}"
+    networks:
+      - proxy
+```
+
+
+## Authelia integration
+Authelia docker container is located on the other host `IP: 192.168.15.7/32` `FQDN: auth.mydomain.de`
+Traefik docker container is located on the same host as `bacularis` docker container `IP: 192.168.15.16/32`
+
+- `traefik` container: add middleware `authelia` into traefik config file
+
+```bash
+vim /opt/traefik/data/conf/traefik.yml
+--------------------------------------
+...
+http:
+...
+  middlewares:
+...
+    authelia:
+      forwardAuth:
+        address: "http://auth.mydomain.de:9091/api/verify?rd=https://auth.mydomain.de/"
+        trustForwardHeader: true
+...
+
+# restart `Traefik` docker container
+cd /opt/traefik && docker-compose up -d
+```
+
+- `authelia` container: change `docker-compos.yml` as below
+
+```bash
+vim docker-compos.yml
+--------------------
+...
+    ports:
+      - 9091:9091
+...
+```
+
+- `authelia` container: add FQDN for bacularis web `bacularis.mydomain.de`
+
+```bash
+vim /opt/authelia/data/authelia/config/configuration.yml
+--------------------------------------------------------
+...
+access_control:
+  default_policy: deny 
+  rules:
+    - domain:
+...
+    - domain: bacularis.mydomain.de
+      policy: one_factor
+...
+
+# restart `authelia` docker container
+cd /opt/authelia && docker-compose up -d
+```
+
+- `authelia` container host: add firewall rule for access to `auth.mydomain.de` port 9091
+
+```bash
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" port port="9091" protocol="tcp" source address="192.168.15.16/32" accept'
+firewall-cmd --reload
+firewall-cmd --zone=public --list-all
+```
 
 # Backup
 ## Backup mysql database

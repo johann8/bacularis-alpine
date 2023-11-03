@@ -357,7 +357,7 @@ services:
 
 
 ## Authelia integration
-Authelia docker container is located on the other host `IP: 192.168.15.7/32` `FQDN: auth.mydomain.de`
+Authelia docker container is located on the other host `IP: 192.168.15.7/32` `FQDN: auth.mydomain.de` \
 Traefik docker container is located on the same host as `bacularis` docker container `IP: 192.168.15.16/32`
 
 - `traefik` container: add middleware `authelia` into traefik config file

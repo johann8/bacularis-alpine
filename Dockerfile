@@ -1,4 +1,4 @@
-FROM alpine:3.18
+FROM alpine:3.19
 
 LABEL maintainer="JH <jh@localhost>"
 
@@ -14,7 +14,7 @@ LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.vcs-url="https://github.com/johann8/" \
       org.label-schema.version=$VERSION
 
-ENV BACULA_VERSION=13.0.2-r1
+ENV BACULA_VERSION=13.0.3-r0
 
 ENV BACULARIS_VERSION=2.1.2
 ENV PACKAGE_NAME=standalone
@@ -56,6 +56,7 @@ RUN if [ "${PACKAGE_NAME}" = 'standalone' ] || [ "${PACKAGE_NAME}" = 'api-dir' ]
          php${PHP_VERSION}-session \
          php${PHP_VERSION}-fpm \
          php${PHP_VERSION}-openssl \
+         php${PHP_VERSION}-gettext \
   && sed -i "/listen = / s!127.0.0.1:9000!/var/run/php-fpm.sock!; /user = / s!nobody!${WEB_USER}!; /group = / s!nobody!${WEB_USER}!; s!;listen.group!listen.group!" /etc/php${PHP_VERSION}/php-fpm.d/www.conf \
   && \
      if [ "${PACKAGE_NAME}" = 'standalone' ] || [ "${PACKAGE_NAME}" = 'api-dir' ]; then \

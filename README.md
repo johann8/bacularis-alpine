@@ -380,10 +380,10 @@ http:
 cd /opt/traefik && docker-compose up -d
 ```
 
-- `authelia` container: change `docker-compos.yml` as below
+- `authelia` container: change `docker-compose.yml` as below
 
 ```bash
-vim docker-compos.yml
+vim docker-compose.yml
 --------------------
 ...
     ports:
@@ -447,7 +447,7 @@ For Postgres DB backup the Script [autopostgresqlbackup](https://github.com/k0lt
 # create backup destination
 mkdir -p /var/backup/container/postgres
 
-# Add to the Docker container where the dostgres database runs
+# Add to the docker container where the dostgres database runs
 
 ...
   autopgbackup:

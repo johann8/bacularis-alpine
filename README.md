@@ -32,7 +32,7 @@ Images are based on [Ubuntu 22](https://hub.docker.com/repository/docker/johann8
 
 | ALpine version | Ubuntu version | Bacularis version |
 |:---------------------------------:|:--------------------------------:|:--------------------------------:|
-| [![Alpine Version](https://img.shields.io/badge/Alpine%20version-v3.19.0-blue.svg?style=flat-square)](https://alpinelinux.org/) | [![Ubuntu Version](https://img.shields.io/badge/Ubuntu%20version-22.04-blue.svg?style=flat-square)](https://ubuntu.com/) | [![Bacularis Version](https://img.shields.io/badge/Bacularis%20version-2.2.1-orange.svg?style=flat-square)](https://bacularis.app/) |
+| [![Alpine Version](https://img.shields.io/badge/Alpine%20version-v3.19.0-blue.svg?style=flat-square)](https://alpinelinux.org/) | [![Ubuntu Version](https://img.shields.io/badge/Ubuntu%20version-22.04-blue.svg?style=flat-square)](https://ubuntu.com/) | [![Bacularis Version](https://img.shields.io/badge/Bacularis%20version-2.3.0-orange.svg?style=flat-square)](https://bacularis.app/) |
 
 ## Bacula
 [Bacula](https://www.bacula.org/) is a set of Open Source, computer programs that permit you to manage backup, recovery, and verification of computer data across a network of computers.
@@ -56,9 +56,10 @@ mkdir -p /opt/bacularis/data/bacularis/www/bacularis-api/API/{Config,Logs}
 mkdir -p /opt/bacularis/data/bacularis/www/bacularis-web/Web/{Config,Logs}
 mkdir -p /opt/bacularis/data/bacula/{config,data}     
 mkdir -p /opt/bacularis/data/bacula/config/etc/bacula
-mkdir -p /opt/bacularis/data/bacula/data/director
+mkdir -p /opt/bacularis/data/bacula/data/director/{archive,working}
 mkdir -p /opt/bacularis/data/pgsql/{data,socket}
 mkdir -p /opt/bacularis/data/smtp/secret
+chown -R 101:102 /opt/bacularis/data/bacula/data/director
 tree -d -L 4 /opt/bacularis
 ```
 - Create [docker-compose.yml](https://github.com/johann8/bacularis-alpine/blob/master/docker-compose.yml)\

@@ -8,7 +8,9 @@
 
 - Change `Director` config `bacula-dir.conf`
 ```bash
+# You need to pass the variable `before | after` to script
 # Example for client `oracle8-fd`
+
 # Stop docker stack
 cd /opt/bacularis
 dc down

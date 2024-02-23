@@ -72,7 +72,7 @@ JobDefs {
 
 - Download bash script into install path `/opt/bacula/scripts`
 ```bash
-wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/container_backup_before_after.sh -O /opt/bacula/scripts//script_before_after.sh
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/container_backup_before_after.sh -O /opt/bacula/scripts/script_before_after.sh
 chmod a+x /opt/bacula/scripts/script_before_after.sh
 cd /opt/bacularis
 docker-compose up -d

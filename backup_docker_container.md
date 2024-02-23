@@ -83,3 +83,69 @@ docker-compose logs bacularis
 
 ## Backup docker container using Bacula docker plugin
 
+- Install `Bacula` docker-plugin
+```bash
+# Red Hat Enterprise Linux / Centos / Rocky / Oracle
+dnf install bacula-docker-plugin bacula-docker-tools
+
+# Debian / Ubuntu
+apt-get install bacula-docker-plugin bacula-docker-tools
+```
+
+- Change `Director` config `bacula-dir.conf`
+```bash
+# You need to exclude all bacula containers
+# Example for client `oracle8-fd`
+
+# Stop docker stack
+cd /opt/bacularis
+dc down
+
+vim /opt/bacularis/data/bacula/config/etc/bacula/bacula-dir.conf
+-------------------
+Job {
+  Name = "backup-oracle8-docker-plugin"
+  Description = "Backup all docker container with docker-plugin"
+  JobDefs = "oracle8-docker-plugin-job"
+}
+Fileset {
+  Name = "oracle8-docker-plugin-fset"
+  Description = "Backup all docker container with docker-plugin"
+  EnableVss = no
+  Include {
+    Plugin = "docker: include_container=.* exclude_container=^bacula"
+      Options {
+      Compression = "LZO"
+      Signature = "SH1"
+    }
+  }
+}
+JobDefs {
+  Name = "oracle8-docker-plugin-job"
+  Description = "Backup all docker container with docker-plugin"
+  Type = "Backup"
+  Level = "Incremental"
+  Messages = "Standard"
+  Storage = "File1"
+  Pool = "Incremental"
+  FullBackupPool = "Full"
+  IncrementalBackupPool = "Incremental"
+  DifferentialBackupPool = "Differential"
+  Client = "oracle8-fd"
+  Fileset = "oracle8-docker-plugin-fset"
+  Schedule = "WeeklyCycle"
+  WriteBootstrap = "/opt/bacula/working/%c.bsr"
+  SpoolAttributes = yes
+  Priority = 10
+}
+-------------------
+```
+- Start `Bacula` docker stack and check logs
+```bash
+cd /opt/bacularis
+docker-compose up -d
+docker-compose ps
+docker-compose logs
+docker-compose logs bacularis
+```
+

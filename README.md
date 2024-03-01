@@ -13,6 +13,8 @@
   - [Access WebUI](#access-webui)
   - [Access bconsole](#access-bconsole)
   - [Firewall rules](#firewall-rules)
+  - [Add new autochanger](docs/add_new_autochanger.md)
+  - [Add new storage and scheduler](docs/add_new_storage_and_scheduler.md)
   - [Docker Exim Relay Image](#docker-exim-relay-image)
   - [Traefik integration](#traefik-integration)
   - [Authelia integration](#authelia-integration)

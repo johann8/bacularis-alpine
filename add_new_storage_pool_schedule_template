@@ -2,7 +2,6 @@
 ### === Add Storage and Pool for Archive and new Scheduler ===
 #
 
-# cd /opt/bacularis && dcexec bacularis bash
 # 1. cd /opt/bacularis && dcexec bacularis bash
 # 2. cd /tmp
 # 3. curl  https://raw.githubusercontent.com/johann8/bacularis-alpine/master/add_new_storage_pool_schedule_template --output add_new_storage_pool_schedule_template

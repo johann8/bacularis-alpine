@@ -1,7 +1,7 @@
 <h2 align="center">Bacula - Add new autochanger for Archive Storage</h2>
 
 ## Add new autochanger
-- An new autochanger will be set up for `bacula` archive backup. A template has been prepared for this. Two variables must be adjusted: `AUTOCHANGER_NAME` and `MEDIA_TYPE`. Then execute the following commands:
+- A new autochanger will be set up for `bacula` archive backup. A template has been prepared for this. Two variables must be adjusted: `AUTOCHANGER_NAME` and `MEDIA_TYPE`. Then execute the following commands:
 
 ```bash
 cd /opt/bacularis && dcexec bacularis bash

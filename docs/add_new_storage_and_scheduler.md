@@ -1,6 +1,5 @@
 <h2 align="center">Bacula - Add new Storage for Archive and new Scheduler</h2>
 
-## Add new Storage for Archive and new Scheduler
 
 - After you have created the autochanger, you must also create a storage unit. A template has also been created for this. You have to adjust some variables in it. Two new schedulers will be created at the same time `MonthlyCycle-Archive-Win` and `MonthlyCycle-Archive-Lin`. If you do not need them, please delete them from the template.Then execute the following commands: 
 

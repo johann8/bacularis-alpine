@@ -6,21 +6,23 @@
 
 ## Backup docker container using bash script
 
-- Change `Director` config `bacula-dir.conf`
+- Modify `Director` config `bacula-dir.conf`
+
 ```bash
 # You need to pass the variable `before | after` to script
 # Example for client `oraclel8-fd`
 
-# Stop docker stack
-cd /opt/bacularis
-dc down
+#
+### If LVM snapshot will not be used
+#
+BACULA_DIR_CONFIG=/opt/bacularis/data/bacula/config/etc/bacula/bacula-dir.conf
+CLIENT_NAME=oraclel8
 
-vim /opt/bacularis/data/bacula/config/etc/bacula/bacula-dir.conf
--------------------
+cat >> ${BACULA_DIR_CONFIG} << EOL
 Job {
-  Name = "backup-oraclel8-docker-stopScript"
+  Name = "backup-${CLIENT_NAME}-docker-stopScript"
   Description = "Backup all docker container with container stop script"
-  JobDefs = "oraclel8-docker-stopScript-job"
+  JobDefs = "${CLIENT_NAME}-docker-stopScript-job"
   Runscript {
     RunsWhen = "Before"
     Command = "/opt/bacula/scripts/script_before_after.sh before"
@@ -31,7 +33,7 @@ Job {
   }
 }
 Fileset {
-  Name = "oraclel8-docker-stopScript-fset"
+  Name = "${CLIENT_NAME}-docker-stopScript-fs"
   Description = "Backup all docker container with container stop script"
   EnableVss = no
   Include {
@@ -50,7 +52,7 @@ Fileset {
   }
 }
 JobDefs {
-  Name = "oraclel8-docker-stopScript-job"
+  Name = "${CLIENT_NAME}-docker-stopScript-job"
   Description = "Backup all docker container with container stop script"
   Type = "Backup"
   Level = "Incremental"
@@ -60,14 +62,14 @@ JobDefs {
   FullBackupPool = "Full"
   IncrementalBackupPool = "Incremental"
   DifferentialBackupPool = "Differential"
-  Client = "oraclel8-fd"
-  Fileset = "oraclel8-docker-stopScript-fset"
+  Client = "${CLIENT_NAME}-fd"
+  Fileset = "${CLIENT_NAME}-docker-stopScript-fs"
   Schedule = "WeeklyCycle"
   WriteBootstrap = "/opt/bacula/working/%c.bsr"
   SpoolAttributes = yes
   Priority = 10
 }
--------------------
+EOL
 ```
 
 - Download bash script into install path `/opt/bacula/scripts`
@@ -88,16 +90,17 @@ docker-compose logs bacularis
 # You need to pass the variable `before | after` to script
 # Example for client `oraclel8-fd`
 
-# Stop docker stack
-cd /opt/bacularis
-dc down
+#
+### If LVM snapshot will be used
+#
+BACULA_DIR_CONFIG=/opt/bacularis/data/bacula/config/etc/bacula/bacula-dir.conf
+CLIENT_NAME=oraclel8
 
-vim /opt/bacularis/data/bacula/config/etc/bacula/bacula-dir.conf
--------------------
+cat >> ${BACULA_DIR_CONFIG} << EOL
 Job {
-  Name = "backup-oraclel8-docker-stopScript"
+  Name = "backup-${CLIENT_NAME}-docker-stopScript"
   Description = "Backup all docker container with container stop script"
-  JobDefs = "oraclel8-docker-stopScript-job"
+  JobDefs = "${CLIENT_NAME}-docker-stopScript-job"
   Runscript {
     RunsWhen = "Before"
     Command = "/opt/bacula/scripts/script_before_after.sh before"
@@ -108,11 +111,11 @@ Job {
   }
 }
 Fileset {
-  Name = "oraclel8-docker-stopScript-fset"
+  Name = "${CLIENT_NAME}-docker-stopScript-fs"
   Description = "Backup all docker container with container stop script"
   EnableVss = no
   Include {
-    File = "/mnt/lvm_snap/opt"
+    File = "/mnt/lvm_snap/opt"   
     Options {
       Compression = "LZO"
       Signature = "SHA1"
@@ -122,12 +125,11 @@ Fileset {
   Exclude {
     File = "/mnt/lvm_snap/opt/containerd"
     File = "/mnt/lvm_snap/opt/lost+found"
-    File = "/mnt/lvm_snap/opt/bacularis"
-    File = "/mnt/lvm_snap/opt/bacularisalp"
+    File = "/mnt/lvm_snap/opt/bacularisalp"	
   }
 }
 JobDefs {
-  Name = "oraclel8-docker-stopScript-job"
+  Name = "${CLIENT_NAME}-docker-stopScript-job"
   Description = "Backup all docker container with container stop script"
   Type = "Backup"
   Level = "Incremental"
@@ -137,14 +139,14 @@ JobDefs {
   FullBackupPool = "Full"
   IncrementalBackupPool = "Incremental"
   DifferentialBackupPool = "Differential"
-  Client = "oraclel8-fd"
-  Fileset = "oraclel8-docker-stopScript-fset"
+  Client = "${CLIENT_NAME}-fd"
+  Fileset = "${CLIENT_NAME}-docker-stopScript-fs"
   Schedule = "WeeklyCycle"
   WriteBootstrap = "/opt/bacula/working/%c.bsr"
   SpoolAttributes = yes
   Priority = 10
 }
--------------------
+EOL
 ```
 
 - Download bash script into install path `/opt/bacula/scripts`
@@ -152,7 +154,7 @@ JobDefs {
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/scripts/container_backup_before_after.sh -O /opt/bacula/scripts/script_before_after.sh
 chmod a+x /opt/bacula/scripts/script_before_after.sh
 cd /opt/bacularis
-docker-compose up -d
+docker-compose down && docker-compose up -d
 docker-compose ps
 docker-compose logs
 docker-compose logs bacularis
@@ -186,7 +188,7 @@ Job {
   JobDefs = "oraclel8-docker-plugin-job"
 }
 Fileset {
-  Name = "oraclel8-docker-plugin-fset"
+  Name = "oraclel8-docker-plugin-fs"
   Description = "Backup all docker container with docker-plugin"
   EnableVss = no
   Include {
@@ -210,7 +212,7 @@ JobDefs {
   IncrementalBackupPool = "Incremental"
   DifferentialBackupPool = "Differential"
   Client = "oraclel8-fd"
-  Fileset = "oraclel8-docker-plugin-fset"
+  Fileset = "oraclel8-docker-plugin-fs"
   Schedule = "WeeklyCycle"
   WriteBootstrap = "/opt/bacula/working/%c.bsr"
   SpoolAttributes = yes

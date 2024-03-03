@@ -77,7 +77,7 @@ EOL
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/scripts/container_backup_before_after.sh -O /opt/bacula/scripts/script_before_after.sh
 chmod a+x /opt/bacula/scripts/script_before_after.sh
 cd /opt/bacularis
-docker-compose up -d
+docker-compose down && docker-compose up -d
 docker-compose ps
 docker-compose logs
 docker-compose logs bacularis

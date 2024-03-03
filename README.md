@@ -283,7 +283,9 @@ chmod u+x *.sh
 
 ```bash
 CLIENT_NAME=srv01
-IP_ADDRESS="192.168.155.5"
+IP_ADDRESS=$(ip addr show $(ip route | awk '/default/ {print $5}') |grep -w inet | awk '/inet/ {print $2}' | cut -d'/' -f1)
+echo ${IP_ADDRESS}
+
 ./1_create_new_bacula_client_linux--server_side_template.sh -n ${CLIENT_NAME} -ip ${IP_ADDRESS}
 ./2_create_new_bacula_client_linux--client_side_template.sh -n ${CLIENT_NAME}
 ```

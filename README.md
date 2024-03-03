@@ -265,6 +265,7 @@ You can create client config files automatically. For this you can find some scr
 - Download files below in a directory
 
 ```bash
+cd /tmp
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/1_create_new_bacula_client_linux--server_side_template.sh
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/2_create_new_bacula_client_linux--client_side_template.sh
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bacula-dir_template.conf
@@ -281,7 +282,6 @@ chmod u+x *.sh
 - When everything is ready, run the scripts to create bacula linux client config files. Here is an example:
 
 ```bash
-cd /tmp
 CLIENT_NAME=srv01
 IP_ADDRESS="192.168.155.5"
 ./1_create_new_bacula_client_linux--server_side_template.sh -n ${CLIENT_NAME} -ip ${IP_ADDRESS}

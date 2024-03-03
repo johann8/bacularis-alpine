@@ -298,6 +298,7 @@ bconsole
 reload
 q
 exit
+cd -
 ```
 - The created files `bacula-fd_srv01.conf` and `bconsole_srv01.conf` must be copied from `bacula docker host` to client by folder `/opt/bacula/etc`
 - SSH to `bacula client` host

@@ -85,7 +85,8 @@ docker-compose logs bacularis
 
 ## Backup docker container using bash script and lvm snapshot
 
-- Change `Director` config `bacula-dir.conf`
+- Modify `Director` config `bacula-dir.conf`
+
 ```bash
 # You need to pass the variable `before | after` to script
 # Example for client `oraclel8-fd`
@@ -150,6 +151,7 @@ EOL
 ```
 
 - Download bash script into install path `/opt/bacula/scripts`
+
 ```bash
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/scripts/container_backup_before_after.sh -O /opt/bacula/scripts/script_before_after.sh
 chmod a+x /opt/bacula/scripts/script_before_after.sh
@@ -163,6 +165,7 @@ docker-compose logs bacularis
 ## Backup docker container using Bacula docker plugin
 
 - Install `Bacula` docker-plugin
+
 ```bash
 # Red Hat Enterprise Linux / Centos / Rocky / Oracle
 dnf install bacula-docker-plugin bacula-docker-tools
@@ -171,24 +174,23 @@ dnf install bacula-docker-plugin bacula-docker-tools
 apt-get install bacula-docker-plugin bacula-docker-tools
 ```
 
-- Change `Director` config `bacula-dir.conf`
+- Modify `Director` config `bacula-dir.conf`
+
 ```bash
 # You need to exclude all bacula containers
 # Example for client `oraclel8-fd`
 
-# Stop docker stack
-cd /opt/bacularis
-dc down
+BACULA_DIR_CONFIG=/opt/bacularis/data/bacula/config/etc/bacula/bacula-dir.conf
+CLIENT_NAME=oraclel8
 
-vim /opt/bacularis/data/bacula/config/etc/bacula/bacula-dir.conf
--------------------
+cat >> ${BACULA_DIR_CONFIG} << EOL
 Job {
-  Name = "backup-oraclel8-docker-plugin"
+  Name = "backup-${CLIENT_NAME}-docker-plugin"
   Description = "Backup all docker container with docker-plugin"
-  JobDefs = "oraclel8-docker-plugin-job"
+  JobDefs = "${CLIENT_NAME}-docker-plugin-job"
 }
 Fileset {
-  Name = "oraclel8-docker-plugin-fs"
+  Name = "${CLIENT_NAME}-docker-plugin-fs"
   Description = "Backup all docker container with docker-plugin"
   EnableVss = no
   Include {
@@ -201,7 +203,7 @@ Fileset {
   }
 }
 JobDefs {
-  Name = "oraclel8-docker-plugin-job"
+  Name = "${CLIENT_NAME}-docker-plugin-job"
   Description = "Backup all docker container with docker-plugin"
   Type = "Backup"
   Level = "Incremental"
@@ -211,19 +213,20 @@ JobDefs {
   FullBackupPool = "Full"
   IncrementalBackupPool = "Incremental"
   DifferentialBackupPool = "Differential"
-  Client = "oraclel8-fd"
-  Fileset = "oraclel8-docker-plugin-fs"
+  Client = "${CLIENT_NAME}-fd"
+  Fileset = "${CLIENT_NAME}-docker-plugin-fs"
   Schedule = "WeeklyCycle"
   WriteBootstrap = "/opt/bacula/working/%c.bsr"
   SpoolAttributes = yes
   Priority = 10
 }
--------------------
+EOL
 ```
 - Start `Bacula` docker stack and check logs
+
 ```bash
 cd /opt/bacularis
-docker-compose up -d
+docker-compose down && docker-compose up -d
 docker-compose ps
 docker-compose logs
 docker-compose logs bacularis

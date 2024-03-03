@@ -259,6 +259,9 @@ You can create client config files automatically. For this you can find some scr
 ### For Linux
 
 ---
+
+- SSH login to `bacula docker hosti`
+
 - Download files below in a directory
 
 ```bash
@@ -270,7 +273,7 @@ wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bacula-fd
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bconsole_template.conf
 chmod u+x *.sh
 ```
-- SSH login to `bacula docker host`
+
 - To create configuration for Bacula `Linux` client on server side, you need to pass two parameters to script 1, namely `client name` and `IP address`
 - To create configuration for Bacula `Linux` client on client side, you need to pass only one parametes to script 2, namely `client name`
 - The MD5 `bacula client` password will be automatically created by the script

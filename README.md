@@ -308,6 +308,7 @@ reload
 q
 exit
 cd -
+
 ```
 - The created files `bacula-fd_srv01.conf` and `bconsole_srv01.conf` must be copied from `bacula docker host` to client by folder `/opt/bacula/etc`
 - SSH to `bacula client` host
@@ -328,6 +329,23 @@ mv bconsole.conf bconsole.conf.back
 mv /tmp/bacula-fd_srv01.conf bacula-fd.conf
 mv /tmp/bconsole_srv01.conf bconsole.conf
 systemctl restart bacula-fd.service
+# delete files
+cd /tmp
+rm -rf bacula-* bconsole_template.conf config_files *.sh
+
+#
+### if bacula client is running on the docker host, than
+#
+cd /opt/bacula/etc
+mv bacula-fd.conf bacula-fd.conf.back
+mv bconsole.conf bconsole.conf.back
+\cp /tmp/config_files/bacula-fd_oraclel8.conf ./bacula-fd.conf
+\cp /tmp/config_files/bconsole_oraclel8.conf ./bconsole.conf
+systemctl restart bacula-fd.service
+
+# delete files
+cd /tmp
+rm -rf bacula-* bconsole_template.conf config_files *.sh
 ```
 ### For Windows
 

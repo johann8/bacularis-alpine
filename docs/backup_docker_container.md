@@ -72,18 +72,19 @@ JobDefs {
 }
 EOL
 
-cd /opt/bacularis
-docker-compose up -d
+cd /opt/bacularis && docker-compose up -d
 docker-compose ps
 docker-compose logs
 docker-compose logs bacularis
 ```
 
 - Download bash script into install path `/opt/bacula/scripts`
+
 ```bash
-# add script
+# add script and adjust vars
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/scripts/container_backup_before_after.sh -O /opt/bacula/scripts/script_before_after.sh
 chmod a+x /opt/bacula/scripts/script_before_after.sh
+vim /opt/bacula/scripts/script_before_after.sh
 ```
 
 ## Backup docker container using bash script and lvm snapshot
@@ -153,8 +154,7 @@ JobDefs {
 }
 EOL
 
-cd /opt/bacularis
-docker-compose up -d
+cd /opt/bacularis && docker-compose up -d
 docker-compose ps
 docker-compose logs
 docker-compose logs bacularis
@@ -163,9 +163,10 @@ docker-compose logs bacularis
 - Download bash script into install path `/opt/bacula/scripts`
 
 ```bash
-# add script
+# add script and adjust var
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/scripts/container_backup_before_after.sh -O /opt/bacula/scripts/script_before_after.sh
 chmod a+x /opt/bacula/scripts/script_before_after.sh
+vim /opt/bacula/scripts/script_before_after.sh
 ```
 
 ## Backup docker container using Bacula docker plugin

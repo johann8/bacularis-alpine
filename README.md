@@ -292,8 +292,17 @@ echo ${IP_ADDRESS}
 - The created files can be found in the folder `config_files`. The content of the file `bacula-dir_srv01.conf` is added to the configuration file `bacula-dir.conf` of the `bacula server`
 
 ```bash
+# stop bacula docker stack
+cd /opt/bacularis && docker-compose down
+cd -
+
+# add client config to bacula-dir
 cat config_files/bacula-dir_srv01.conf >> /opt/bacularis/data/bacula/config/etc/bacula/bacula-dir.conf
-cd /opt/bacularis && docker-compose exec bacularis bash
+
+# run bacula docker stack
+cd /opt/bacularis && docker-compose up -d && docker-compose exec bacularis bash
+
+# reread config
 bconsole
 reload
 q

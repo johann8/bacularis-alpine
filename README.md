@@ -136,8 +136,8 @@ tree -d -L 6 /opt/bacularis
 mkdir -p /mnt/USB_NFS_PVE01/bacula/archive
 
 # set rights: 101 - bacula user uid; 26 - tape group gid
-chown 101:26 /opt/bacularis/data/bacula/config/etc/bacula/
-chown -R 101:26 /mnt/USB_NFS_PVE01/bacula/
+chown 101:102 /opt/bacularis/data/bacula/config/etc/bacula
+chown 101:26 /mnt/USB_NFS_PVE01/bacula/archive
 ```
 - Create [docker-compose.yml](https://github.com/johann8/bacularis-alpine/blob/master/docker-compose.yml)\
 or

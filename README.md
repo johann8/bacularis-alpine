@@ -46,6 +46,75 @@ Images are based on [Ubuntu 22](https://hub.docker.com/repository/docker/johann8
 ## Bacula linux binaries
 [Bacula](https://www.bacula.org/) linux binaries Deb / Rpm can be found on [Bacula website](https://www.bacula.org/bacula-binary-package-download/). To access these binaries, you will need an access key, which will be provided when you complete a simple registration.
 
+- Install bacula client on Debian / Ubuntu
+
+```bash
+apt-get update
+apt-get install apt-transport-http
+
+# Import GPG key
+cd /tmp
+wget https://www.bacula.org/downloads/Bacula-4096-Distribution-Verification-key.asc
+apt-key add Bacula-4096-Distribution-Verification-key.asc
+rm Bacula-4096-Distribution-Verification-key.asc
+
+### Debian - create repo file
+ACCESS_KEY=MyAccessKey
+BACULA_VERSION=13.0.4
+DEBIAN_VERSION=bullseye
+
+cat > /etc/apt/sources.list.d/Bacula-Community.list << EOL
+# Bacula Community
+deb https://www.bacula.org/packages/${ACCESS_KEY}/debs/${BACULA_VERSION} ${DEBIAN_VERSION} main
+EOL
+
+### Ubuntu - create repo file
+ACCESS_KEY=MyAccessKey
+BACULA_VERSION=13.0.4
+DEBIAN_VERSION=jammy
+
+cat > /etc/apt/sources.list.d/Bacula-Community.list << EOL
+# Bacula Community
+deb https://www.bacula.org/packages/${ACCESS_KEY}/debs/${BACULA_VERSION} ${DEBIAN_VERSION} main
+EOL
+
+# install bacula client
+apt-get update
+apt-get install bacula-client
+systemctl enable --now bacula-fd
+systemctl status bacula-fd
+```
+
+- Install bacula client on CentOS / Redhat / Rocky /Oracle
+
+```bash
+# Import GPG key 
+cd /tmp
+wget https://www.bacula.org/downloads/Bacula-4096-Distribution-Verification-key.asc
+rpm --import Bacula-4096-Distribution-Verification-key.asc
+rm Bacula-4096-Distribution-Verification-key.asc
+
+# Create dnf / yum - repo file
+ACCESS_KEY=MyAccessKey
+BACULA_VERSION=13.0.4
+EL_VERSION=el8
+
+cat > /etc/yum.repos.d/Bacula.repo  << EOL
+[Bacula-Community]
+name=CentOS - Bacula - Community
+baseurl=https://www.bacula.org/packages/${ACCESS_KEY}/rpms/${BACULA_VERSION}/${EL_VERSION}/x86_64/
+enabled=1
+protect=0
+gpgcheck=1
+gpgkey=https://www.bacula.org/downloads/Bacula-4096-Distribution-Verification-key.asc
+EOL
+
+# install bacula client
+dnf install bacula-client
+systemctl enable --now bacula-fd
+systemctl status bacula-fd
+```
+
 ## Bacula windows binaries
 [Bacula](https://www.bacula.org/)  windows binaries can be found on [Bacula website](https://www.bacula.org/binary-download-center/).
 
@@ -329,6 +398,7 @@ mv bconsole.conf bconsole.conf.back
 mv /tmp/bacula-fd_srv01.conf bacula-fd.conf
 mv /tmp/bconsole_srv01.conf bconsole.conf
 systemctl restart bacula-fd.service
+
 # delete files
 cd /tmp
 rm -rf bacula-* bconsole_template.conf config_files *.sh

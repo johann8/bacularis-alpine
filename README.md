@@ -129,7 +129,6 @@ mkdir -p /opt/bacularis/data/bacularis/www/bacularis-api/API/{Config,Logs}
 mkdir -p /opt/bacularis/data/bacularis/www/bacularis-web/Web/{Config,Logs}
 mkdir -p /opt/bacularis/data/bacula/{config,data}     
 mkdir -p /opt/bacularis/data/bacula/config/etc/bacula
-mkdir -p /opt/bacularis/data/bacula/data/director/working
 mkdir -p /opt/bacularis/data/pgsql/{data,socket}
 mkdir -p /opt/bacularis/data/smtp/secret
 tree -d -L 6 /opt/bacularis
@@ -139,7 +138,6 @@ mkdir -p /mnt/NAS_BareOS/bacula/archive
 
 # set rights: 101 - bacula user uid; 26 - tape group gid
 chown 101:26 /opt/bacularis/data/bacula/config/etc/bacula/
-chown 101:26 /opt/bacularis/data/bacula/data/director/working
 chown 101:26 /mnt/NAS_BareOS/bacula/archive
 ```
 - Create [docker-compose.yml](https://github.com/johann8/bacularis-alpine/blob/master/docker-compose.yml)\

@@ -12,10 +12,8 @@ services:
     container_name: bacularis
     volumes:
       # Bacula volumes
-      - ${DOCKERDIR}/data/bacula/config/etc/bacula:/opt/bacula/etc            # Bacula config files & scripts
-      #- ${DOCKERDIR}/data/bacula/data/director/archive:/opt/bacula/archive   # Bacula storage folder
-      - /mnt/NAS_BareOS/bacula/archive:/opt/bacula/archive                    # Bacula storage folder
-      - ${DOCKERDIR}/data/bacula/data/director/working:/opt/bacula/working    # Bacula bsr folder
+      - ${DOCKERDIR}/data/bacula/config/etc/bacula:/etc/bacula  # Bacula config files & scripts
+      - /mnt/USB_NFS_PVE01/bacula:/var/lib/bacula               # Bacula storage folder
       # Bacularis volumes
       - ${DOCKERDIR}/data/bacularis/www/bacularis-api/API/Config:/var/www/bacularis/protected/vendor/bacularis/bacularis-api/API/Config
       - ${DOCKERDIR}/data/bacularis/www/bacularis-api/API/Logs:/var/www/bacularis/protected/vendor/bacularis/bacularis-api/API/Logs

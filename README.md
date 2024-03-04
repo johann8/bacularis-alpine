@@ -134,11 +134,11 @@ mkdir -p /opt/bacularis/data/smtp/secret
 tree -d -L 6 /opt/bacularis
 
 # create bacula storage folder
-mkdir -p /mnt/NAS_BareOS/bacula/archive
+mkdir -p /mnt/USB_NFS_PVE01/bacula/archive
 
 # set rights: 101 - bacula user uid; 26 - tape group gid
 chown 101:26 /opt/bacularis/data/bacula/config/etc/bacula/
-chown 101:26 /mnt/NAS_BareOS/bacula/archive
+chown -R 101:26 /mnt/USB_NFS_PVE01/bacula
 ```
 - Create [docker-compose.yml](https://github.com/johann8/bacularis-alpine/blob/master/docker-compose.yml)\
 or

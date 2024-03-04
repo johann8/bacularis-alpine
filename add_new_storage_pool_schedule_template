@@ -44,7 +44,7 @@ Pool {
   Description = "Only for Windows Archive"
   LabelFormat = "${POOL_NAME_WIN}-"
   MaximumVolumeBytes = 53687091200
-  VolumeRetention = 15552000
+  VolumeRetention = 31536000
 }
 
 # Add pool for archive Linux

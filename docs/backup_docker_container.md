@@ -15,6 +15,7 @@
 #
 ### If LVM snapshot will not be used
 #
+cd /opt/bacularis && docker-compose down
 BACULA_DIR_CONFIG=/opt/bacularis/data/bacula/config/etc/bacula/bacula-dir.conf
 CLIENT_NAME=oraclel8
 
@@ -70,17 +71,19 @@ JobDefs {
   Priority = 10
 }
 EOL
+
+cd /opt/bacularis
+docker-compose up -d
+docker-compose ps
+docker-compose logs
+docker-compose logs bacularis
 ```
 
 - Download bash script into install path `/opt/bacula/scripts`
 ```bash
+# add script
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/scripts/container_backup_before_after.sh -O /opt/bacula/scripts/script_before_after.sh
 chmod a+x /opt/bacula/scripts/script_before_after.sh
-cd /opt/bacularis
-docker-compose down && docker-compose up -d
-docker-compose ps
-docker-compose logs
-docker-compose logs bacularis
 ```
 
 ## Backup docker container using bash script and lvm snapshot
@@ -94,6 +97,7 @@ docker-compose logs bacularis
 #
 ### If LVM snapshot will be used
 #
+cd /opt/bacularis && docker-compose down
 BACULA_DIR_CONFIG=/opt/bacularis/data/bacula/config/etc/bacula/bacula-dir.conf
 CLIENT_NAME=oraclel8
 
@@ -148,18 +152,20 @@ JobDefs {
   Priority = 10
 }
 EOL
+
+cd /opt/bacularis
+docker-compose up -d
+docker-compose ps
+docker-compose logs
+docker-compose logs bacularis
 ```
 
 - Download bash script into install path `/opt/bacula/scripts`
 
 ```bash
+# add script
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/scripts/container_backup_before_after.sh -O /opt/bacula/scripts/script_before_after.sh
 chmod a+x /opt/bacula/scripts/script_before_after.sh
-cd /opt/bacularis
-docker-compose down && docker-compose up -d
-docker-compose ps
-docker-compose logs
-docker-compose logs bacularis
 ```
 
 ## Backup docker container using Bacula docker plugin
@@ -180,6 +186,7 @@ apt-get install bacula-docker-plugin bacula-docker-tools
 # You need to exclude all bacula containers
 # Example for client `oraclel8-fd`
 
+cd /opt/bacularis && docker-compose down
 BACULA_DIR_CONFIG=/opt/bacularis/data/bacula/config/etc/bacula/bacula-dir.conf
 CLIENT_NAME=oraclel8
 
@@ -221,12 +228,12 @@ JobDefs {
   Priority = 10
 }
 EOL
+
 ```
 - Start `Bacula` docker stack and check logs
 
 ```bash
-cd /opt/bacularis
-docker-compose down && docker-compose up -d
+cd /opt/bacularis && docker-compose up -d
 docker-compose ps
 docker-compose logs
 docker-compose logs bacularis

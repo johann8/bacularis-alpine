@@ -145,7 +145,7 @@ EOL
       echo -n "Changing backup job name...              "
       sed -i -e 's/Name = "BackupClient1"/Name = "backup-bacula-fd"/g' \
              -e 's/Pool = File/Pool = "Incremental"/g' \
-             -e 's/Full Set/bacula-fd-fset/g' ${BACULA_DIR_CONFIG}
+             -e 's/Full Set/bacula-fd-fs/g' ${BACULA_DIR_CONFIG}
       echo "[done]"
 
       echo -n "Changing backup job description...       "     

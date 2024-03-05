@@ -200,7 +200,7 @@ EOL
    #
    echo -n "Setting bacula config permissions...     "
    #chown -R bacula:bacula /etc/bacula/*
-   chown bacula:tape /var/lib/bacula/archive
+   chown bacula:tape /var/lib/bacula/archive && addgroup bacula tape
    #chmod -R 775 /etc/bacula/*
    echo "[done]"
 

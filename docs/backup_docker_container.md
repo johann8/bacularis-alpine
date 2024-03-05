@@ -66,7 +66,7 @@ JobDefs {
   Client = "${CLIENT_NAME}-fd"
   Fileset = "${CLIENT_NAME}-docker-stopScript-fs"
   Schedule = "WeeklyCycle"
-  WriteBootstrap = "/opt/bacula/working/%c.bsr"
+  WriteBootstrap = "/var/lib/bacula/%c.bsr"
   SpoolAttributes = yes
   Priority = 10
 }
@@ -148,7 +148,7 @@ JobDefs {
   Client = "${CLIENT_NAME}-fd"
   Fileset = "${CLIENT_NAME}-docker-stopScript-fs"
   Schedule = "WeeklyCycle"
-  WriteBootstrap = "/opt/bacula/working/%c.bsr"
+  WriteBootstrap = "/var/lib/bacula/%c.bsr"
   SpoolAttributes = yes
   Priority = 10
 }
@@ -224,7 +224,7 @@ JobDefs {
   Client = "${CLIENT_NAME}-fd"
   Fileset = "${CLIENT_NAME}-docker-plugin-fs"
   Schedule = "WeeklyCycle"
-  WriteBootstrap = "/opt/bacula/working/%c.bsr"
+  WriteBootstrap = "/var/lib/bacula/%c.bsr"
   SpoolAttributes = yes
   Priority = 10
 }

@@ -11,8 +11,8 @@
 
 AUTOCHANGER_NAME=FileChgr3
 MEDIA_TYPE=File3
-ARCHIVE_DEVICE="/opt/bacula/archive"
-PATH_TO_BACULA_SD="/opt/bacula/etc/bacula-sd.conf"
+ARCHIVE_DEVICE="/var/lib/bacula/archive"
+PATH_TO_BACULA_SD="/etc/bacula/bacula-sd.conf"
 cat >> ${PATH_TO_BACULA_SD} << EOL
 
 #

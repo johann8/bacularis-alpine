@@ -229,8 +229,16 @@ JobDefs {
   Priority = 10
 }
 EOL
-
 ```
+- Download bash script into install path `/opt/bacula/scripts`
+
+```bash
+# add script and adjust var
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/scripts/container_backup_before_after.sh -O /opt/bacula/scripts/script_before_after.sh
+chmod a+x /opt/bacula/scripts/script_before_after.sh
+vim /opt/bacula/scripts/script_before_after.sh
+```
+
 - Start `Bacula` docker stack and check logs
 
 ```bash

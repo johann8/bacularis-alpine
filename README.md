@@ -381,7 +381,7 @@ cd -
 - Copy files `bacula-fd_srv01.conf` and `bconsole_srv01.conf` from `bacula docker host`
 
 ```bash
-# on docker host - copy config files to bacula clien host
+# on docker host - copy config files to bacula client host
 scp config_files/bacula-fd_pve01.conf config_files/bconsole_pve01.conf user@bacula-client-ip:/tmp
 ssh user@bacula-client-ip
 cd /opt/bacula/etc

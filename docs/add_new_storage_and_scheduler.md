@@ -7,7 +7,7 @@
 cd /opt/bacularis && dcexec bacularis bash
 cd /tmp
 curl  https://raw.githubusercontent.com/johann8/bacularis-alpine/master/add_new_storage_pool_schedule_template --output add_new_storage_pool_schedule_template
-nano add_new_storage_pool_schedule_template
+vi add_new_storage_pool_schedule_template
 
 bash add_new_storage_pool_schedule_template
 rm -rf add_new_storage_pool_schedule_template

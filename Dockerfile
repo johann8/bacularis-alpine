@@ -15,7 +15,7 @@ LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.version=$VERSION
 
 ENV BACULA_VERSION=13.0.3-r0
-
+ENV POSTGRES_VERSION=16
 ENV BACULARIS_VERSION=2.6.0
 ENV PACKAGE_NAME=standalone
 ENV PHP_VERSION=81
@@ -23,7 +23,7 @@ ENV WEB_USER=nginx
 
 RUN if [ "${PACKAGE_NAME}" = 'standalone' ] || [ "${PACKAGE_NAME}" = 'api-dir' ]; then \
        #apk add --no-cache postgresql14; \
-       apk add --no-cache postgresql14-client; \
+       apk add --no-cache postgresql${POSTGRES_VERSION}-client; \
        #mkdir -m 0777 /run/postgresql; \
        #chown postgres:postgres /run/postgresql; \
     fi \

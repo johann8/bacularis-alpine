@@ -33,7 +33,7 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}                               # defined in .env file
       - DB_ADMIN_USER=${DB_ADMIN_USER}                           # defined in .env file
       - DB_ADMIN_PASSWORD=${DB_ADMIN_PASSWORD}                   # defined in .env file
-      - BUILD_DAEMON_NAME=build-3-17-x86_64                      # build name of bacula director daemon
+      - BUILD_DAEMON_NAME=build-3-19-x86_64                      # build name of bacula director daemon
       - DESIRED_DAEMON_NAME=bacula                               # sets a new name for bacula director daemon
       - WEB_ADMIN_USER=${ADMIN_USER:-admin}                      # defined in .env file
       - WEB_ADMIN_PASSWORD_DECRYPT=${ADMIN_PASSWORD_DECRYPT}     # defined in .env file

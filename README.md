@@ -419,6 +419,7 @@ rm -rf bacula-* bconsole_template.conf config_files *.sh
 - Download files below in a directory
 
 ```bash
+cd /tmp
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/3_create_new_bacula_client_windows--server_side_template.sh
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/bacula-dir_template_windows.conf
 chmod u+x *.sh
@@ -437,6 +438,7 @@ IP_ADDRESS="192.168.155.5"
 - The created files can be found in the folder `config_files`. The content of the file `bacula-dir_win-srv01.conf` is added to the configuration file `bacula-dir.conf` of the `bacula server`
 
 ```bash
+cd /tmp
 cat config_files/bacula-dir_win-srv01.conf >> /opt/bacularis/data/bacula/config/etc/bacula/bacula-dir.conf
 cd /opt/bacularis && docker-compose exec bacularis bash
 bconsole

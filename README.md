@@ -15,6 +15,7 @@
   - [Firewall rules](#firewall-rules)
   - [Add new autochanger](docs/add_new_autochanger.md)
   - [Add new storage and scheduler](docs/add_new_storage_and_scheduler.md)
+  - [Customize notification from bacula](#Customize-notification-from-bacula)
   - [Docker Exim Relay Image](#docker-exim-relay-image)
   - [Traefik integration](#traefik-integration)
   - [Authelia integration](#authelia-integration)
@@ -315,6 +316,21 @@ firewall-cmd --permanent --zone=public --add-port=443/tcp
 firewall-cmd --reload
 firewall-cmd --list-all
 ```
+## Customize notification from bacula
+- If you have several companies / customers, it quickly becomes confusing when checking the emails. To avoid this, add the company/customer name to the `bacula-dir` configuration. For example:
+
+```bash
+# customize variable
+FIRMA=MyFirma
+PATH_TO_BACULA_DIR=/opt/bacularis/data/bacula/config/etc/bacula/bacula-dir.conf
+
+sed -i -e "s/Bacula:/Bacula ${FIRMA}:/" ${PATH_TO_BACULA_DIR}
+cat ${PATH_TO_BACULA_DIR}  |grep "Bacula ${FIRMA}:"
+
+sed -i -e "s/Bacula daemon message/Bacula ${FIRMA} daemon message/" ${PATH_TO_BACULA_DIR}
+cat ${PATH_TO_BACULA_DIR} |grep "Bacula ${FIRMA} daemon message" 
+```
+
 ## Docker Exim Relay Image
 [Exim mail relay](https://exim.org) is a lightweight Docker image, based on the official Alpine image. You can see the documentation for this [here](https://github.com/devture/exim-relay) 
 

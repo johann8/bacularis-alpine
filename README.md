@@ -150,11 +150,17 @@ cd /opt/bacularis
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/docker-compose.yml
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/docker-compose.override.yml
 wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/.env
+
+# show used subnets
+cd /opt/bacularis && grep -r SUBNET /opt/*
 ```
 - Customize variables in all files
 - Generate `admin` user `password` [here](https://www.web2generators.com/apache-tools/htpasswd-generator). You need both passwords decrypt and encrypted
 
 ```
+# generate admin password
+pwgen -1cnsB 20 5
+
 # Example
 Username: admin
 Password decrypt: N04X1UYYbZ2J69sAYLb0N04

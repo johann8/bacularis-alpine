@@ -76,6 +76,7 @@ services:
 
   smtpd:
     image: devture/exim-relay:${SMTP_VERSION}
+    container_name: bacula-smtpd
     user: 100:101
     restart: always
     #ports:

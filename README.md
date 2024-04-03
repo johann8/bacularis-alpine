@@ -12,6 +12,7 @@
   - [Docker variables](#docker-variables)
   - [Access WebUI](#access-webui)
   - [Access bconsole](#access-bconsole)
+  - [DNS Records](#dns-records)
   - [Firewall rules](#firewall-rules)
   - [Add new autochanger](docs/add_new_autochanger.md)
   - [Add new storage and scheduler](docs/add_new_storage_and_scheduler.md)
@@ -294,6 +295,14 @@ docker exec -it bacularis bconsole
 cd /opt/bacularis
 docker-compose exec bacularis bconsole
 ```
+## DNS Records
+
+| Name | Type | Data |
+|-------------------:|:--------------------:|:---------------------|
+| bacularis  | CNAME | traefik-host.mydomain.de |
+| bacula-dir | CNAME | docker-host.mydomain.de  |
+| bacula-sd  | CNAME | docker-host.mydomain.de  |
+
 
 ## Firewall rules
 

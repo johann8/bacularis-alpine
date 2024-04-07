@@ -16,7 +16,7 @@ LABEL org.label-schema.schema-version="1.0" \
 
 ENV BACULA_VERSION=13.0.3-r0
 ENV POSTGRES_VERSION=16
-ENV BACULARIS_VERSION=2.6.0
+ENV BACULARIS_VERSION=2.7.0
 ENV PACKAGE_NAME=standalone
 ENV PHP_VERSION=81
 ENV WEB_USER=nginx
@@ -29,7 +29,7 @@ RUN if [ "${PACKAGE_NAME}" = 'standalone' ] || [ "${PACKAGE_NAME}" = 'api-dir' ]
     fi \
   && \ 
     if [ "${PACKAGE_NAME}" = 'standalone' ] || [ "${PACKAGE_NAME}" = 'web' ]; then \
-       apk add --no-cache expect openssh-client gnupg; \
+       apk add --no-cache expect openssh-client iproute2-ss gnupg; \
     fi \
   && mkdir -m 0770 /run/bacula \
   && apk add --no-cache nginx curl tzdata tar \

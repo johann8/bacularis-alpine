@@ -25,7 +25,8 @@
 - [Backup](#backup)
   - [Backup mysql database](#backup-mysql-database)
   - [Backup postgres database](#backup-postgres-database)
-- [Backup docker container](docs/backup_docker_container.md) 
+  - [Backup docker container](docs/backup_docker_container.md) 
+  - [Script check storage is mounted](docs/using_script_check_storage_is_mounted.md)
 - [My Docker hub](#my-docker-hub)
 
 ## Docker images 🐋

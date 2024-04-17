@@ -360,7 +360,7 @@ You can create client config files automatically. For this you can find some scr
 
 ---
 
-- SSH login to `bacula docker hosti`
+- SSH login to `bacula docker host`
 
 - Download files below in a directory
 

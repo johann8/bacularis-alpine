@@ -131,7 +131,8 @@ systemctl status bacula-fd
 # create folders
 mkdir -p /opt/bacularis/data/{bacularis,bacula,pgsql}
 mkdir -p /opt/bacularis/data/bacularis/www/bacularis-api/API/{Config,Logs}
-mkdir -p /opt/bacularis/data/bacularis/www/bacularis-web/Web/{Config,Logs}
+mkdir -p /opt/bacularis/data/bacularis/www/bacularis-web/Web/{Config,Logs}     
+mkdir -p /opt/bacularis/data/bacula/config/etc
 mkdir -p /opt/bacularis/data/pgsql/{data,socket}
 mkdir -p /opt/bacularis/data/smtp/secret
 tree -d -L 6 /opt/bacularis

@@ -340,7 +340,7 @@ firewall-cmd --list-all
 ```bash
 # customize variable
 FIRMA=MyFirma
-PATH_TO_BACULA_DIR=/opt/bacularis/data/bacula/config/etc/bacula/bacula-dir.conf
+PATH_TO_BACULA_DIR=/opt/bacularis/data/bacula/config/etc/bacula-dir.conf
 
 sed -i -e "s/Bacula:/Bacula ${FIRMA}:/" ${PATH_TO_BACULA_DIR}
 cat ${PATH_TO_BACULA_DIR}  |grep "Bacula ${FIRMA}:"

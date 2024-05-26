@@ -13,6 +13,7 @@ BACULA_SD_CONFIG="/etc/bacula/bacula-sd.conf"
 BACULA_FD_CONFIG="/etc/bacula/bacula-fd.conf"
 BCONSOLE_CONFIG="/etc/bacula/bconsole.conf"
 B_VERSION=$(echo ${BACULA_VERSION} | awk -F- '{print $1}')
+PHP_VERSION=83
 
 function start()
 {
@@ -47,7 +48,7 @@ echo ""
 
 # Change Time Zone
 echo -n "Changing PHP time zone...                "
-sed -i "/date.timezone =/c\date.timezone = \"${TZ}\"" /etc/php81/php.ini
+sed -i "/date.timezone =/c\date.timezone = \"${TZ}\"" /etc/php${PHP_VERSION}/php.ini
 echo "[done]"
 
 ### control bacula config

@@ -1,4 +1,4 @@
-FROM alpine:3.19
+FROM alpine:3.20
 
 LABEL maintainer="JH <jh@localhost>"
 
@@ -16,9 +16,9 @@ LABEL org.label-schema.schema-version="1.0" \
 
 ENV BACULA_VERSION=13.0.3-r0
 ENV POSTGRES_VERSION=16
-ENV BACULARIS_VERSION=3.0.1
+ENV BACULARIS_VERSION=3.1.0
 ENV PACKAGE_NAME=standalone
-ENV PHP_VERSION=81
+ENV PHP_VERSION=83
 ENV WEB_USER=nginx
 
 RUN if [ "${PACKAGE_NAME}" = 'standalone' ] || [ "${PACKAGE_NAME}" = 'api-dir' ]; then \

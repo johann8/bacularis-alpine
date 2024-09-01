@@ -397,7 +397,7 @@ cd /opt/bacularis && docker-compose down
 cd -
 
 # add client config to bacula-dir
-cat config_files/bacula-dir_srv01.conf >> /opt/bacularis/data/bacula/config/etc/bacula/bacula-dir.conf
+cat config_files/bacula-dir_srv01.conf >> /opt/bacularis/data/bacula/config/etc/bacula-dir.conf
 
 # run bacula docker stack
 cd /opt/bacularis && docker-compose up -d && docker-compose exec bacularis bash
@@ -473,7 +473,7 @@ IP_ADDRESS="192.168.155.5"
 
 ```bash
 cd /tmp
-cat config_files/bacula-dir_win-srv01.conf >> /opt/bacularis/data/bacula/config/etc/bacula/bacula-dir.conf
+cat config_files/bacula-dir_win-srv01.conf >> /opt/bacularis/data/bacula/config/etc/bacula-dir.conf
 cd /opt/bacularis && docker-compose exec bacularis bash
 bconsole
 reload

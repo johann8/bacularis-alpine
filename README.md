@@ -236,7 +236,7 @@ ls -la /mnt/USB_NFS_PVE01/bacula/
 chown -R 101:26 /mnt/USB_NFS_PVE01/bacula/archive
 ls -la /mnt/USB_NFS_PVE01/bacula/
 
-# Docker Stack neu starten
+# Docker Stack restart
 cd /opt/bacularis
 docker-compose down && docker-compose up -d
 ```

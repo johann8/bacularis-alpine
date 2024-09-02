@@ -226,17 +226,29 @@ to
 ...
 -------------
 ```
-- First access to `bacularis`
+## First restart of docker container
+
+Before restarting the `Docker Stack` after the above changes, the access rights to the path `/mnt/USB_NFS_PVE01/bacula/archive` must be checked again and corrected if necessary.
+
+```bash
+# Check rights and correct if necessary
+ls -la /mnt/USB_NFS_PVE01/bacula/
+chown -R 101:26 /mnt/USB_NFS_PVE01/bacula/archive
+ls -la /mnt/USB_NFS_PVE01/bacula/
+
+# Docker Stack neu starten
+cd /opt/bacularis
+docker-compose down && docker-compose up -d
+```
+
+## First access to `bacularis`
 
 ```bash
 URL: https://bacularis.mydomain.de
 User: admin
+Password: Is in the .env file
 ```
-# First restart of docker container
-```bash
-cd /opt/bacularis
-docker-compose down && docker-compose up -d
-```
+
 
 # Docker variables
 

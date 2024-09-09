@@ -115,19 +115,20 @@ stop_docker_container() {
          CONTAINER_COUNTER=$((CONTAINER_COUNTER+1))
          CONTAINER_NAME=$(docker inspect --format '{{.Name}}' $container | sed 's/^\///')
 
-      # skip container"bacula-smtpd bacularis bacula-db"
-      if [[ ${CONTAINER_NAME} =  ${AR_EXCLUDE_B_CONTAINER[0]} ]] || [[ ${CONTAINER_NAME} = ${AR_EXCLUDE_B_CONTAINER[1]} ]] || [[ ${CONTAINER_NAME} = ${AR_EXCLUDE_B_CONTAINER[2]} ]]; then
-         echo -e "Info: Container \"${CONTAINER_NAME}\" will be skipped ..." | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
-      else
-         echo -e "Info: Stopping container ($CONTAINER_COUNTER/$TOTAL_CONTAINERS): ${CONTAINER_NAME} ($container) ..." | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
-         docker stop $container > /dev/null 2>&1
+         # skip container"bacula-smtpd bacularis bacula-db"
+         if [[ ${CONTAINER_NAME} =  ${AR_EXCLUDE_B_CONTAINER[0]} ]] || [[ ${CONTAINER_NAME} = ${AR_EXCLUDE_B_CONTAINER[1]} ]] || [[ ${CONTAINER_NAME} = ${AR_EXCLUDE_B_CONTAINER[2]} ]]; then
+            echo -e "Info: Container \"${CONTAINER_NAME}\" will be skipped ..." | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
+         else
+            echo -e "Info: Stopping container ($CONTAINER_COUNTER/$TOTAL_CONTAINERS): ${CONTAINER_NAME} ($container) ..." | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
+            docker stop $container > /dev/null 2>&1
 
-         DOCSTATE=$(docker inspect -f {{.State.Running}} $container)
-         echo -e "Info: Container running state: ${DOCSTATE}" | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
-         print_container_state "Info: Container stopped." "Info: Container ${CONTAINER_NAME} ($container) still not running, should be started!!!"
-      fi
-      echo -e "....................................................." | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
-      echo -e " " | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
+            DOCSTATE=$(docker inspect -f {{.State.Running}} $container)
+            echo -e "Info: Container running state: ${DOCSTATE}" | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
+            print_container_state "Info: Container stopped." "Info: Container ${CONTAINER_NAME} ($container) still not running, should be started!!!"
+         fi
+
+         echo -e "....................................................." | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
+         echo -e " " | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
       done
    else
       echo -e "Info: No Docker containers found." | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
@@ -152,8 +153,9 @@ start_docker_container() {
             echo -e "Info: Container running state: ${DOCSTATE}" | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
             print_container_state "Info: Container ${CONTAINER_NAME} ($container) still not running, should be started!!!" "Info: Container started."
          fi
-            echo -e "....................................................." | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
-            echo -e " " | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
+
+         echo -e "....................................................." | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
+         echo -e " " | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
       done
    else
       echo -e "Info: No Docker containers found." | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}

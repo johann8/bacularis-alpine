@@ -3,7 +3,7 @@
 # set -x
 
 ##############################################################################
-# Script-Name : script_before_after.sh                                       #
+# Script-Name : container_backup_before_after.sh                             #
 # Description : Script to create and to backup the LVM Snapshot              #
 #               On successful execution starts Bacula to back up data        #
 #               On error Bacula does not start to back up data               #

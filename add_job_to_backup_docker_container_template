@@ -1,4 +1,3 @@
-cat > /tmp/bacula_template << 'EOL'
 Fileset {
   Name = "{{ B_CLIENT }}-docker-stopScript-fs"
   Description = "Backup all docker container with container start/stop script"
@@ -63,5 +62,3 @@ Job {
     Command = "/opt/bacula/scripts/script_before_after.sh after"
   }
 }
-EOL
-

@@ -2,9 +2,37 @@
 # for debug
 # set -x
 
-#
-### === Set variables ===
-#
+##############################################################################
+# Script-Name : script_before_after.sh                                       #
+# Description : Script to create and to backup the LVM Snapshot              #
+#               On successful execution starts Bacula to back up data        #
+#               On error Bacula does not start to back up data               #
+#                                                                            #
+# Created     : 02.08.2022                                                   #
+# Last update : 09.09.2024                                                   #
+# Version     : 0.2.5                                                        #
+#                                                                            #
+# Author      : Johann Hahn, <j.hahn@wassermann*****technik.de>              #
+# DokuWiki    : https://docu.***.wassermanngruppe.de                         #
+# Homepage    : https://wassermanngruppe.de                                  #
+# GitHub      : https://github.com/johann8/bacularis-alpine                  #
+# Download    : https://raw.githubusercontent.com/johann8/bacularis-alpine/\ #
+#               master/scripts/container_backup_before_after.sh              #
+#                                                                            #
+#  +----------------------------------------------------------------------+  #
+#  | This program is free software; you can redistribute it and/or modify |  #
+#  | it under the terms of the GNU General Public License as published by |  #
+#  | the Free Software Foundation; either version 2 of the License, or    |  #
+#  | (at your option) any later version.                                  |  #
+#  +----------------------------------------------------------------------+  #
+#                                                                            #
+# Copyright (c) 2022 - 2024 by Johann Hahn                                   #
+#                                                                            #
+##############################################################################
+
+##############################################################################
+# >>> Please edit following lines for personal settings and custom usages. ! #
+##############################################################################
 
 # CUSTOM LV vars - please adjust
 LVM_PARTITION_DOCKER=yes                                  # is there LVM Partition for docker container: yes | no
@@ -20,7 +48,7 @@ MOUNT_OPTIONS="-o nouuid"                                 # Mount option for xfs
 # CUSTOM - script
 SCRIPT_NAME="script_before_after.sh"
 BASENAME=${SCRIPT_NAME}
-SCRIPT_VERSION="0.2.4"
+SCRIPT_VERSION="0.2.5"
 TIMESTAMP="$(date +%Y%m%d-%Hh%Mm)"
 _DATUM="$(date '+%Y-%m-%d %Hh:%Mm:%Ss')"
 SCRIPT_START_TIME=$SECONDS                                # Script start time
@@ -189,6 +217,14 @@ echo -e " " | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
 echo -e "${SEPARATOR}" | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
 echo -e "${SCRIPT_PARAM}" | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
 echo -e "${SEPARATOR}" | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
+
+# check if $1 is empty
+if [[ -z $1 ]]; then 
+   echo -e "Error: You have not passed a parameter to Script." | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
+   exit 1
+else
+   echo -e "Info: You have passed the parameter \"$1\" to Script." | tee /proc/1/fd/1 -a ${FILE_LAST_LOG}
+fi
 
 # check if service monit is available.
 if [[ -x /usr/local/bin/monit ]]; then

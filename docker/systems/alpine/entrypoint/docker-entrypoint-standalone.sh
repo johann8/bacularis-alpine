@@ -51,7 +51,7 @@ echo -n "Changing PHP time zone...                "
 sed -i "/date.timezone =/c\date.timezone = \"${TZ}\"" /etc/php${PHP_VERSION}/php.ini
 echo "[done]"
 
-# Set "memory_limit
+# Set var memory_limit
 echo -n "Setting \"memory_limit\" into custom.ini...       "
 sed -i -e '/memory_limit =/c\memory_limit = "'${MEMORY_LIMIT}'"' /etc/php${PHP_VERSION}/conf.d/custom.ini
 echo "[done]"

@@ -20,6 +20,8 @@ ENV BACULARIS_VERSION=4.1.0
 ENV PACKAGE_NAME=standalone
 ENV PHP_VERSION=83
 ENV WEB_USER=nginx
+# For PHP
+ENV MEMORY_LIMIT=128M
 
 RUN if [ "${PACKAGE_NAME}" = 'standalone' ] || [ "${PACKAGE_NAME}" = 'api-dir' ]; then \
        #apk add --no-cache postgresql14; \
@@ -71,6 +73,8 @@ COPY "docker/systems/alpine/sudoers.d/bacularis-${PACKAGE_NAME}" /etc/sudoers.d/
 COPY "docker/systems/alpine/entrypoint/docker-entrypoint.inc"  /
 
 COPY "docker/systems/alpine/entrypoint/docker-entrypoint-${PACKAGE_NAME}.sh" /docker-entrypoint.sh
+
+COPY rootfs/ /
 
 RUN chmod 755 /docker-entrypoint.sh
 

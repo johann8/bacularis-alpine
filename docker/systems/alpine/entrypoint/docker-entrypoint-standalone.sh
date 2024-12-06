@@ -7,7 +7,7 @@ trap stop SIGTERM SIGINT SIGQUIT SIGHUP ERR
 . /docker-entrypoint.inc
 
 # set variables
-LOCAL_ADDRESS=build-3-19-x86_64
+LOCAL_ADDRESS=build-3-21-x86_64
 BACULA_DIR_CONFIG="/etc/bacula/bacula-dir.conf"
 BACULA_SD_CONFIG="/etc/bacula/bacula-sd.conf"
 BACULA_FD_CONFIG="/etc/bacula/bacula-fd.conf"
@@ -48,7 +48,7 @@ echo ""
 
 # Change Time Zone
 echo -n "Changing PHP time zone...                "
-sed -i "/date.timezone =/c\date.timezone = \"${TZ}\"" /etc/php${PHP_VERSION}/php.ini
+sed -i "/date.timezone =/c\date.timezone = \"${TZ}\"" /etc/php${PHP_VERSION}/conf.d/custom.ini
 echo "[done]"
 
 # Set var memory_limit

@@ -1,4 +1,4 @@
-FROM alpine:3.20
+FROM alpine:3.21
 
 LABEL maintainer="JH <jh@localhost>"
 
@@ -14,9 +14,10 @@ LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.vcs-url="https://github.com/johann8/" \
       org.label-schema.version=$VERSION
 
-ENV BACULA_VERSION=13.0.3-r0
+#ENV BACULA_VERSION=13.0.3-r0
+ENV BACULA_VERSION=15.0.2-r0
 ENV POSTGRES_VERSION=16
-ENV BACULARIS_VERSION=4.4.0
+ENV BACULARIS_VERSION=4.5.0
 ENV PACKAGE_NAME=standalone
 ENV PHP_VERSION=83
 ENV WEB_USER=nginx

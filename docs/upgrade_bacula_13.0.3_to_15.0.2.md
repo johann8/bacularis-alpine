@@ -3,7 +3,18 @@
 Register [here](https://www.bacula.org/bacula-binary-package-download/) to receive `access-key`\
 You might find the [Community installation guide](https://www.bacula.org/whitepapers/CommunityInstallationGuide.pdf) very useful
 
-## Upgrade Bacula Docker container 
+### Upgrade Bacula Docker container 
+
+- Update with the script [`updateDMS.sh`](https://github.com/johann8/tools?tab=readme-ov-file#install-updatedmssh-script)
+
+```bash
+
+cd /opt/bacularis
+./updateDMS.sh
+
+```
+
+### Manual steps after the upgrade
 
 ```bash
 # Stop monit service
@@ -11,10 +22,12 @@ systemctl status monit
 systemctl stop monit
 systemctl status monit
 
-# Upgrade Bacularis Version von 13 to 15
+# Upgrade Bacula Version von 13 to 15
 cd /opt/bacularis
 docker-compose exec bacularis bash
 
+
+# 
 aa96f4fdcd6a:/# which bacula-dir
 /usr/sbin/bacula-dir
 

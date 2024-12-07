@@ -43,6 +43,7 @@ cat /etc/os-release
 mv /etc/bacula/scripts /etc/bacula/scripts_old_version
 tar -xzvf /bacula-dir.tgz -C /tmp/
 mv /tmp/etc/bacula/scripts /etc/bacula
+rm -rf /tmp/etc
 ls -la /etc/bacula
 
 # Exit docker container

@@ -22,15 +22,15 @@ systemctl status monit
 systemctl stop monit
 systemctl status monit
 
-# Upgrade Bacula Version von 13 to 15
+# Run bash in the container
 cd /opt/bacularis
 docker-compose exec bacularis bash
 
-
-# 
+# Show path to bacula-dir
 aa96f4fdcd6a:/# which bacula-dir
 /usr/sbin/bacula-dir
 
+# Check bacula config file
 /usr/sbin/bacula-dir -t -u bacula -g bacula
 bacula-dir: dird.c:1540-0 Could not open Catalog "MyCatalog", database "bacula".
 bacula-dir: dird.c:1546-0 Version error for database "bacula". Wanted 1026, got 1024

@@ -138,12 +138,12 @@ fi
 WORKING_DIR=$(pwd)
 if [[ -f ${WORKING_DIR}/${SCRIPT_NAME_CLIENT} ]]; then
    # read bacula-dir monitor pw
-   echo -n "Reading bacula-dir monitor pw..."
+   echo -n "Reading bacula-dir monitor pw...         "
    BACULA_DIR_MON_PW=$(cat ${BACULA_SERVER_CONFIG_DIR_DOCKER} |sed -n '/bacula-mon/,+1p' |grep Password |cut -f 2 -d '"')
    echo [DONE]
 
    # insert passwort in script
-   echo -n "Inserting password to script... "
+   echo -n "Inserting password to script...          "
    sed -i -e "s%###BACULA_DIR_MON_PASSWORD###%${BACULA_DIR_MON_PW}%" ${WORKING_DIR}/${SCRIPT_NAME_CLIENT}
    echo [DONE]
 else

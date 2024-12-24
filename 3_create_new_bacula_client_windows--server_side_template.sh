@@ -5,7 +5,7 @@
 #
 
 # Set variables
-SCRIPT_VERSION=0.3
+SCRIPT_VERSION=0.4
 PASSWORD="$(pwgen 32 1)"
 MD5_PASSWORD=$(echo -n "$PASSWORD"|md5sum| sed -r 's/\s+.*$//;s/^/[md5]/')
 CLIENT_NAME=

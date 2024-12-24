@@ -5,7 +5,7 @@
 #
 
 # Set variables
-SCRIPT_VERSION=0.4
+SCRIPT_VERSION=0.5
 
 # IP Address of docker host wher bacula server is running
 DIRECTOR_ADDRESS=$(ip addr show $(ip route | awk '/default/ {print $5}') |grep -w inet | awk '/inet/ {print $2}' | cut -d'/' -f1)

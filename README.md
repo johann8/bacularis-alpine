@@ -66,7 +66,7 @@ rm Bacula-4096-Distribution-Verification-key.asc
 
 ### Debian - create repo file
 ACCESS_KEY=MyAccessKey
-BACULA_VERSION=13.0.4
+BACULA_VERSION=15.0.2
 DEBIAN_VERSION=bullseye
 
 cat > /etc/apt/sources.list.d/Bacula-Community.list << EOL
@@ -76,7 +76,7 @@ EOL
 
 ### Ubuntu - create repo file
 ACCESS_KEY=MyAccessKey
-BACULA_VERSION=13.0.4
+BACULA_VERSION=15.0.2
 DEBIAN_VERSION=jammy
 
 cat > /etc/apt/sources.list.d/Bacula-Community.list << EOL
@@ -102,7 +102,7 @@ rm Bacula-4096-Distribution-Verification-key.asc
 
 # Create dnf / yum - repo file
 ACCESS_KEY=MyAccessKey
-BACULA_VERSION=13.0.4
+BACULA_VERSION=15.0.2
 EL_VERSION=el8
 
 cat > /etc/yum.repos.d/Bacula.repo  << EOL

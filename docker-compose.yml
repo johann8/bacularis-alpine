@@ -10,10 +10,13 @@ services:
   bacularis:
     image: johann8/bacularis:${B_VERSION}
     container_name: bacularis
+    restart: always
+    depends_on:
+      - bacula-db
     volumes:
       # Bacula volumes
-      - ${DOCKERDIR}/data/bacula/config/etc:/etc/bacula  # Bacula config files & scripts
-      - /mnt/USB_NFS_PVE01/bacula:/var/lib/bacula               # Bacula storage folder
+      - ${DOCKERDIR}/data/bacula/config/etc:/etc/bacula              # Bacula config files & scripts
+      - /mnt/USB_NFS_PVE01/bacula:/var/lib/bacula                    # Bacula storage folder
       # Bacularis volumes
       - ${DOCKERDIR}/data/bacularis/www/bacularis-api/API/Config:/var/www/bacularis/protected/vendor/bacularis/bacularis-api/API/Config
       - ${DOCKERDIR}/data/bacularis/www/bacularis-api/API/Logs:/var/www/bacularis/protected/vendor/bacularis/bacularis-api/API/Logs
@@ -43,9 +46,6 @@ services:
       - ADD_STORAGE_POOL=true                                        # true- add storage pools: Full, Differential, Incremental; false - makes no change
       - DOCKER_HOST_IP=${DOCKER_HOST_IP}                             # needs for bacula-dir configuration
       - MEMORY_LIMIT=${PHP_MEMORY_LIMIT}                             # Set var "MEMORY_LIMIT" in MB in custom.ini
-    restart: always
-    depends_on:
-      - bacula-db
     ports:
       - ${PORT_BACULARIS:-9097}:9097                                 # without RP comment
       - ${PORT_STORAGE:-9103}:9103
@@ -57,6 +57,7 @@ services:
   bacula-db:
     image: postgres:${DB_VERSION}
     container_name: bacula-db
+    restart: always
     volumes:
       - ${DOCKERDIR}/data/pgsql/data:/var/lib/postgresql/data
       - ${DOCKERDIR}/data/pgsql/socket:/var/run/postgresql
@@ -71,7 +72,6 @@ services:
       interval: 45s
       timeout: 20s
       retries: 3
-    restart: always
     networks:
       - baculaNet
 

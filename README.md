@@ -233,9 +233,10 @@ Before restarting the `Docker Stack` after the above changes, the access rights 
 
 ```bash
 # Check rights and correct if necessary
-ls -la /mnt/USB_NFS_PVE01/bacula/
-chown -R 101:26 /mnt/USB_NFS_PVE01/bacula/archive
-ls -la /mnt/USB_NFS_PVE01/bacula/
+BACULA_STORAGE_PATH=/mnt/USB_NFS_PVE01/bacula
+ls -la ${BACULA_STORAGE_PATH}
+chown -R 101:26 ${BACULA_STORAGE_PATH}/archive
+ls -la ${BACULA_STORAGE_PATH}
 
 # Docker Stack restart
 cd /opt/bacularis

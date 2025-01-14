@@ -16,7 +16,7 @@
 ### If LVM snapshot will not be used
 #
 cd /opt/bacularis && docker-compose down
-BACULA_DIR_CONFIG=/opt/bacularis/data/bacula/config/etc/bacula/bacula-dir.conf
+BACULA_DIR_CONFIG=/opt/bacularis/data/bacula/config/etc/bacula-dir.conf
 CLIENT_NAME=oraclel8
 
 cat >> ${BACULA_DIR_CONFIG} << EOL
@@ -99,7 +99,7 @@ vim /opt/bacula/scripts/script_before_after.sh
 ### If LVM snapshot will be used
 #
 cd /opt/bacularis && docker-compose down
-BACULA_DIR_CONFIG=/opt/bacularis/data/bacula/config/etc/bacula/bacula-dir.conf
+BACULA_DIR_CONFIG=/opt/bacularis/data/bacula/config/etc/bacula-dir.conf
 CLIENT_NAME=oraclel8
 
 cat >> ${BACULA_DIR_CONFIG} << EOL
@@ -188,7 +188,7 @@ apt-get install bacula-docker-plugin bacula-docker-tools
 # Example for client `oraclel8-fd`
 
 cd /opt/bacularis && docker-compose down
-BACULA_DIR_CONFIG=/opt/bacularis/data/bacula/config/etc/bacula/bacula-dir.conf
+BACULA_DIR_CONFIG=/opt/bacularis/data/bacula/config/etc/bacula-dir.conf
 CLIENT_NAME=oraclel8
 
 cat >> ${BACULA_DIR_CONFIG} << EOL

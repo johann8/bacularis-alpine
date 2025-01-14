@@ -569,8 +569,8 @@ services:
       #- "traefik.http.routers.bacularis-secure.tls.certresolver=produktion"             # für eigene Zertifikate
       - "traefik.http.routers.bacularis-secure.tls.options=modern@file"
       - "traefik.http.routers.bacularis-secure.tls=true"
-      - "traefik.http.routers.bacularis-secure.middlewares=default-chain@file,rate-limit@file,authelia@file"
-      #- "traefik.http.routers.bacularis-secure.middlewares=default-chain@file,rate-limit@file"
+      #- "traefik.http.routers.bacularis-secure.middlewares=authelia@docker,rate-limit@file,secHeaders@file"
+      - "traefik.http.routers.bacularis-secure.middlewares=rate-limit@file,secHeaders@file"
       - "traefik.http.services.bacularis.loadbalancer.sticky.cookie.httpOnly=true"
       - "traefik.http.services.bacularis.loadbalancer.sticky.cookie.secure=true"
       - "traefik.http.services.traefik.loadbalancer.server.port=${PORT}"
@@ -580,6 +580,7 @@ services:
 
 
 ## Authelia integration
+
 Authelia docker container is located on the other host `IP: 192.168.15.7/32` `FQDN: auth.mydomain.de` \
 Traefik docker container is located on the same host as `bacularis` docker container `IP: 192.168.15.16/32`
 

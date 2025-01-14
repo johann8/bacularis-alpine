@@ -82,7 +82,7 @@ docker-compose logs bacularis
 
 ```bash
 # add script and adjust vars
-wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/scripts/container_backup_before_after.sh -O /opt/bacula/scripts/script_before_after.sh
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/refs/heads/master/scripts/container_backup_before_after.sh -O /opt/bacula/scripts/script_before_after.sh
 chmod a+x /opt/bacula/scripts/script_before_after.sh
 vim /opt/bacula/scripts/script_before_after.sh
 ```
@@ -164,7 +164,7 @@ docker-compose logs bacularis
 
 ```bash
 # add script and adjust var
-wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/scripts/container_backup_before_after.sh -O /opt/bacula/scripts/script_before_after.sh
+wget https://raw.githubusercontent.com/johann8/bacularis-alpine/refs/heads/master/scripts/container_backup_before_after.sh -O /opt/bacula/scripts/script_before_after.sh
 chmod a+x /opt/bacula/scripts/script_before_after.sh
 vim /opt/bacula/scripts/script_before_after.sh
 ```
@@ -230,15 +230,6 @@ JobDefs {
 }
 EOL
 ```
-- Download bash script into install path `/opt/bacula/scripts`
-
-```bash
-# add script and adjust var
-wget https://raw.githubusercontent.com/johann8/bacularis-alpine/master/scripts/container_backup_before_after.sh -O /opt/bacula/scripts/script_before_after.sh
-chmod a+x /opt/bacula/scripts/script_before_after.sh
-vim /opt/bacula/scripts/script_before_after.sh
-```
-
 - Start `Bacula` docker stack and check logs
 
 ```bash

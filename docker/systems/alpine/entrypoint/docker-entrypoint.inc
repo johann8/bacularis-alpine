@@ -3,7 +3,7 @@
 export PGDATA='/var/lib/postgresql/data'
 POSTGRESQL_USER='postgres'
 BACULA_USER='bacula'
-PHP_VERSION=83
+PHP_VERSION=84
 
 function initdb()
 {
@@ -75,5 +75,5 @@ function start_php_fpm()
 
 function stop_php_fpm()
 {
-    kill `pidof php-fpm83`
+    kill `pidof php-fpm84`
 }

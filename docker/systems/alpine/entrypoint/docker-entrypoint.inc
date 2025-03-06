@@ -78,25 +78,26 @@ function stop_php_fpm()
     kill `pidof php-fpm84`
 }
 
-function update_script_folder() {
-   # move folder "scripts" to "scripts_old_version"    
-   echo "Renaming folder scripts... " 
-   mv /etc/bacula/scripts /etc/bacula/scripts_old_version
+function update_script_folder()
+{
+   if [[ -d /etc/bacula/scripts ]]; then    
+      echo "Renaming folder scripts... " 
+      mv /etc/bacula/scripts /etc/bacula/scripts_old_version
 
-   # create temp directory
-   echo "Creating temp directory... " 
-   TEMPD=$(mktemp -d -p /tmp)
+      echo "Creating temp directory... " 
+      TEMPD=$(mktemp -d -p /tmp)
       
-   if [[ -d ${TEMPD} ]]; then  	  
-      # Extract files to temp dir
-      echo "Extracting bacula-dir.tgz to temp directory... "
-      tar -xzvf /bacula-dir.tgz -C ${TEMPD}
+      if [[ -d ${TEMPD} ]]; then  	  
+         echo "Extracting bacula-dir.tgz to temp directory... "
+         tar -xzvf /bacula-dir.tgz -C ${TEMPD}
 
-      # Move extracted files to "/etc/bacula/scripts"
-      echo "Moving extracted files... "
-      mv ${TEMPD/etc/bacula/scripts /etc/bacula/scripts   
-   else
-      echo "Could not create temp dir."
-      exit 0 	  
+         echo "Moving extracted files... "
+         mv ${TEMPD/etc/bacula/scripts /etc/bacula/scripts
+
+         echo "Deleting extracted files... "
+         rm -rf ${TEMPD}		 
+      else
+         echo "Error: Could not create temp dir." 	  
+      fi
    fi	  
 }

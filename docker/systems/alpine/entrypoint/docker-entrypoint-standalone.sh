@@ -338,6 +338,34 @@ if [ "${DB_UPDATE}" == 'true' ] ; then
    /etc/bacula/scripts/grant_bacula_privileges  2>/dev/null
 fi
 
+# Update script folder to new version
+# check var POSTGRES_VERSION not empty
+if [[ -n ${POSTGRES_VERSION} ]]; then
+
+   # determine postgres client version
+   POSTGRES_CLIENT_VERSION=$(cat /usr/libexec/postgresql/PG_VERSION)
+
+   if [[ ${POSTGRES_VERSION} -eq ${POSTGRES_CLIENT_VERSION} ]]; then
+      # do nothing
+      echo "Posgres server and client have the same version."
+   else
+      # Folder "scripts_old_version" exist
+      if [[ -d /etc/bacula/scripts_old_version ]]; then 
+
+         echo "Deleting old script folder... "
+         rm -rf /etc/bacula/scripts_old_version
+
+         # run function
+         update_script_folder	  
+
+      # Folder "scripts_old_version" does not exist
+      else
+         # run function
+         update_script_folder
+      fi
+   fi
+fi 
+
 echo ""
 echo "+----------------------------------------------------------+"
 echo "|           Starting  Bacula CE - Verison ${B_VERSION}           |"

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # set variables
-_VERSION=5.0.0
+_VERSION=4.8.0
 
 # create build
 docker build -f ./Dockerfile -t johann8/bacularis:${_VERSION}-alpine . 2>&1 | tee ./build.log

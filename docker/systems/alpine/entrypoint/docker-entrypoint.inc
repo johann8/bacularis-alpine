@@ -92,7 +92,7 @@ function update_script_folder()
          tar -xzvf /bacula-dir.tgz -C ${TEMPD}
 
          echo "Moving extracted files... "
-         mv ${TEMPD/etc/bacula/scripts /etc/bacula/scripts
+         mv ${TEMPD}/etc/bacula/scripts /etc/bacula/scripts
 
          echo "Deleting extracted files... "
          rm -rf ${TEMPD}		 

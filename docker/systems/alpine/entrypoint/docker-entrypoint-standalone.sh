@@ -7,7 +7,7 @@ trap stop SIGTERM SIGINT SIGQUIT SIGHUP ERR
 . /docker-entrypoint.inc
 
 # set variables
-LOCAL_ADDRESS=build-3-21-x86_64
+LOCAL_ADDRESS=${BUILD_DAEMON_NAME}
 BACULA_DIR_CONFIG="/etc/bacula/bacula-dir.conf"
 BACULA_SD_CONFIG="/etc/bacula/bacula-sd.conf"
 BACULA_FD_CONFIG="/etc/bacula/bacula-fd.conf"

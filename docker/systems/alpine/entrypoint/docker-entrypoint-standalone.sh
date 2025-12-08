@@ -13,7 +13,7 @@ BACULA_SD_CONFIG="/etc/bacula/bacula-sd.conf"
 BACULA_FD_CONFIG="/etc/bacula/bacula-fd.conf"
 BCONSOLE_CONFIG="/etc/bacula/bconsole.conf"
 B_VERSION=$(echo ${BACULA_VERSION} | awk -F- '{print $1}')
-PHP_VERSION=84
+PHP_VERSION=85
 
 function start()
 {

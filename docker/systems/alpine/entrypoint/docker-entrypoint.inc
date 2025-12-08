@@ -3,7 +3,7 @@
 export PGDATA='/var/lib/postgresql/data'
 POSTGRESQL_USER='postgres'
 BACULA_USER='bacula'
-PHP_VERSION=84
+PHP_VERSION=85
 
 function initdb()
 {

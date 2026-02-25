@@ -1,8 +1,8 @@
-<h1 align="center">Upgrade PostgresDB from version 16 to version 17</h1>
+<h1 align="center">Bacula - Upgrade PostgreSQL DB from version 16 to version 17</h1>
 
 
 
-##  Upgrade Postgres Datenbank
+##  Bacula - Upgrade PostgreSQL DB
 
 ### Vorbereitungen
 
@@ -26,7 +26,7 @@ postgres=# \q
 exit
 ```
 
-- Rechte für den PostgresDB Ordner anzeigen lassen
+- Rechte für den PostgresSQL DB Ordner anzeigen lassen
 
 ```bash 
 ls -la data/postgres/
@@ -43,7 +43,7 @@ drwx------  2   70   70  4096 20. Feb 23:27 global
 ----
 ```
 
-- `Dump` von PostgresDB "bacula" erstellen
+- `Dump` von PostgreSQL DB `bacula` erstellen
 
 ```bash
 docker compose exec bacula-db pg_dump -U postgres -d bacula -cC > upgrade_backup_pg16.sql    
@@ -69,13 +69,13 @@ cd /opt/bacularis
 docker compose down
 ```
 
-- Altes PostgresDB Verzeichnis umbenennen
+- Altes PostgreSQL DB Verzeichnis umbenennen
 
 ```bash
 mv data/postgres/db-data data/postgres/db-data_16
 ```
 
-- Neues PostgresDB Verzeichnis erstellen
+- Neues PostgreSQL DB Verzeichnis erstellen
 
 ```bash
 mkdir -p data/postgres/{db-data,socket}
@@ -122,7 +122,7 @@ DB_VERSION=17-alpine
 ----
 ```
 
-- Download PostgresDB Docker Image Version 17
+- Download PostgreSQL Docker Image Version 17
 
 ```bash
 docker compose pull
@@ -191,7 +191,7 @@ docker compose up -d bacula-db
 docker compose ps
 docker compose logs -f
 ```
-### PostgresDB `dump` wiederherstellen
+### PostgreSQL DB `dump` wiederherstellen
 
 - Die Größe des Datenbankordners zeigen und `Restore` starten
 
@@ -276,7 +276,7 @@ services:
 ### Nacharbeiten
 
 
-- Inhalt des Ordens "data/bacula/config/etc/" auflisten
+- Inhalt des Ordens `data/bacula/config/etc` auflisten
 
 ```bash
 cd /opt/bacularis
@@ -302,7 +302,8 @@ rm -rf data/bacula/config/etc/scripts_old_version
 mv data/bacula/config/etc/scripts data/bacula/config/etc/scripts_old_version
 ls -la data/bacula/config/etc/
 ```
-Im Docker container `bacularis` befindet sich eine Sicherung vom Ordner `/etc/bacula/scripts`. Dise Sicherung muss im Container entpackt und nach `/etc/bacula/` verschoben werden. In dem Ordner `/etc/bacula/scripts` befinden sich `bacula scripts` für die PostgresDB Version 17.
+
+Im Docker container `bacularis` befindet sich eine Sicherung vom Ordner `/etc/bacula/scripts`. Diese Sicherung muss im Container entpackt und nach `/etc/bacula/` verschoben werden. In dem Ordner `/etc/bacula/scripts` befinden sich `bacula scripts` für die PostgresSQL Version 17.
 
 - Auf `bash` im Container zugreifen
 
@@ -317,7 +318,7 @@ docker compose exec bacula-db bash
 tar -xzvf /bacula-dir.tgz -C /tmp/
 ```
 
-- Prüfen, ob es die richtige Version für PostgresDB 17 ist 
+- Prüfen, ob es die richtige Version für PostgreSQL 17 ist 
 
 ```bash
 cat /tmp/etc/bacula/scripts/make_catalog_backup |grep libexec
@@ -362,5 +363,12 @@ docker compose logs -f
 
 ```bash
 https://mydomain.de/web/
+```
+
+- Monitoring Tool `monit` starten
+
+```bash
+systemctl start monit
+systemctl status monit
 ```
 

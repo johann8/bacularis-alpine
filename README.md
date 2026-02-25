@@ -7,7 +7,7 @@
   - [Create bacula client config files](#create-bacula-client-config-files)
   - [Install bacula client on linux](docs/install_bacula_client_on_linux.md)
   - [Upgrade Bacula from 13.0.3 to 15.0.2](docs/upgrade_bacula_13.0.3_to_15.0.2.md)
-  - [Upgrade PostgresDB Version 16 zu Version 17](docs/upgrade_postgres_db_16_to_17.md)
+  - [Upgrade PostgresSQL Version 16 zu Version 17](docs/upgrade_postgres_db_16_to_17.md)
 - [Bacularis](#bacularis---the-bacula-web-interface)
   - [For Linux](#for-linux)
   - [For Windows](#for-windows)

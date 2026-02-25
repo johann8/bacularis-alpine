@@ -20,9 +20,19 @@ docker compose exec bacula-db bash
 # psql --username postgres --dbname bacula
 psql --username postgres
 
+# list dbs
 postgres=# \l
+
+# list user
 postgres=# \du
+
+# postgres shell verlassen
 postgres=# \q
+
+# PostgesSQL Version anzeigen lassen
+psql -V
+
+# container verlassen
 exit
 ```
 
@@ -251,7 +261,7 @@ postgres=# \du
 # postgres shell verlassen
 postgres=# \q
 
-# PostgesDB Version anzeigen lassen
+# PostgesSQL Version anzeigen lassen
 psql -V
 
 # container verlassen

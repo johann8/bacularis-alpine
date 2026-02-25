@@ -103,6 +103,13 @@ vim docker-compose.yml
 services:
   bacularis:
     ...
+    volumes:
+      # Bacula volumes
+#      - ${DOCKERDIR}/data/bacula/config/etc:/etc/bacula         # Bacula config files & scripts
+#      - /mnt/USB_NFS_PVE01/bacula:/var/lib/bacula               # Bacula storage folder
+      - ./config:/etc/bacula
+      - ./storage:/var/lib/bacula
+    ...
     environment:
       ...
       - DB_INIT=true                                            #should be 'true' if bareos db does not exist
@@ -267,6 +274,11 @@ vim docker-compose.yml
 services:
   bacularis:
     ...
+    volumes:
+      # Bacula volumes
+      - ${DOCKERDIR}/data/bacula/config/etc:/etc/bacula         # Bacula config files & scripts
+      - /mnt/USB_NFS_PVE01/bacula:/var/lib/bacula               # Bacula storage folder
+    ...
     environment:
       ...
       - DB_INIT=false                                            #should be 'true' if bareos db does not exist
@@ -295,64 +307,36 @@ drwxr-x--x 2 root root  4096  5. Mär 2024  scripts_old_version
 rm -rf data/bacula/config/etc/scripts_old_version
 ```
 
-- Ordner `scripts` sichern
+- Den alten Ordner `scripts` sichern
 
 ```bash
 # Ordner "scripts" sichern
-```bash
+cd /opt/bacularis
 mv data/bacula/config/etc/scripts data/bacula/config/etc/scripts_old_version
 ls -la data/bacula/config/etc/
 ```
 
 Im Docker container `bacularis` befindet sich eine Sicherung vom Ordner `/etc/bacula/scripts`. Diese Sicherung muss im Container entpackt und nach `/etc/bacula/` verschoben werden. In dem Ordner `/etc/bacula/scripts` befinden sich `bacula scripts` für die PostgresSQL Version 17.
 
-- Auf `bash` im Container zugreifen
-
-```bash
-cd /opt/bacularis
-docker compose exec bacula-db bash
-```
-
-- Archiv `bacula-dir.tgz` nach `/tmp` entpacken
-
-```bash
-tar -xzvf /bacula-dir.tgz -C /tmp/
-```
 
 - Prüfen, ob es die richtige Version für PostgreSQL 17 ist 
 
 ```bash
-cat /tmp/etc/bacula/scripts/make_catalog_backup |grep libexec
+cat config/scripts/make_catalog_backup |grep libexec
 ----
     BINDIR=/usr/libexec/postgresql17
 ----
 ```
 
-- Ordner `scripts` nach `/etc/bacula/` verschieben
+- Ordner `config/scripts` nach `data/bacula/config/etc/` verschieben
 
 ```bash
-mv /tmp/etc/bacula/scripts /etc/bacula/scripts
+cd /opt/bacularis
+mv config/scripts data/bacula/config/etc/
 ```
-- Aufräumen
 
-```bash
-rm -rf /tmp/etc
-```
-- Inhalt des Ordners `/etc/bacula` auflisten und Docker Container verlassen
-
-```bash
-# Inhalt des Ordens anzeigen lassen 
-ls -la /etc/bacula
-----
-...
-drwxr-x--x 2 root root  4096  6. Dez 2024  scripts
-drwxr-x--x 2 root root  4096  5. Mär 2024  scripts_old_version
-----
-
-# Container verlassen
-exit
-```
 - Docker Stack anhalten und wieder starten
+
 
 ```bash
 docker compose down
@@ -363,8 +347,38 @@ docker compose logs -f
 
 - Prüfen, ob die Startseite von bacularis erreichbar ist und die Funktion testen
 
+
 ```bash
 https://mydomain.de/web/
+```
+
+- Aufräumen, wenn alle Tests gut gelaufen sind
+
+
+```bash
+cd /opt/bacularis
+
+# Ordner "config" löschen
+rm -rf config/
+
+# Ordner "storage" löschen
+rm -rf storage/
+
+# Ordner "db-data_16" löschen
+rm -rf data/postgres/db-data_16/
+```
+
+- Inhalt des Ordners `data/bacula/config/etc/` auflisten
+
+
+```bash
+# Inhalt des Ordens anzeigen lassen 
+ls -la data/bacula/config/etc/
+----
+...
+drwxr-x--x 2 root root  4096  6. Dez 2024  scripts
+drwxr-x--x 2 root root  4096  5. Mär 2024  scripts_old_version
+----
 ```
 
 - Monitoring Tool `monit` starten

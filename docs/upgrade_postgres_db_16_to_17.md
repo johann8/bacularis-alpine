@@ -1,10 +1,10 @@
-<h1 align="center">Bacula - Upgrade PostgreSQL DB from version 16 to version 17</h1>
+<h1 align="center">Bacula - Upgrade PostgreSQL from version 16 to version 17</h1>
 
 
 
-##  Bacula - Upgrade PostgreSQL DB
+##  Bacula - Upgrade PostgreSQL
 
-### Vorbereitungen
+### Vor dem Upgrade
 
 - Auf `bash` im Container zugreifen
 
@@ -89,9 +89,10 @@ chmod 0700 data/postgres/socket
 
 ```bash title="ls -la data/postgres/"
 drwx------  2   70 root 4096 21. Feb 12:07 db-data
-drwx------ 19   70 root 4096 21. Feb 12:07 db-data_14
+drwx------ 19   70 root 4096 21. Feb 12:07 db-data_16
 ```
-### Upgrade starten
+
+### PostgreSQL Upgrade starten
 
 - Datei `docker-compose.yml` ändern
 
@@ -173,7 +174,7 @@ docker compose up -d
 docker compose ps
 docker compose logs -f
 ```
-- Prüfe, ob die Startseite von bacularis erreichbar ist
+- Prüfe, ob die Startseite von `bacularis` erreichbar ist
 
 ```bash
 https://mydomain.de/web/
@@ -193,7 +194,7 @@ docker compose logs -f
 ```
 ### PostgreSQL DB `dump` wiederherstellen
 
-- Die Größe des Datenbankordners zeigen und `Restore` starten
+- Die Größe des Datenbankordners anzeigen und `Restore` starten
 
 ```bash
 ncdu data/postgres/db-data/
@@ -273,10 +274,10 @@ services:
 ----
 ```
 
-### Nacharbeiten
+### Nach dem Upgrade
 
 
-- Inhalt des Ordens `data/bacula/config/etc` auflisten
+- Inhalt des Ordners `data/bacula/config/etc` auflisten
 
 ```bash
 cd /opt/bacularis
@@ -337,7 +338,7 @@ mv /tmp/etc/bacula/scripts /etc/bacula/scripts
 ```bash
 rm -rf /tmp/etc
 ```
-- Inhalt des Ordens `/etc/bacula` auflisten und Docker Container verlassen
+- Inhalt des Ordners `/etc/bacula` auflisten und Docker Container verlassen
 
 ```bash
 # Inhalt des Ordens anzeigen lassen 
@@ -351,15 +352,16 @@ drwxr-x--x 2 root root  4096  5. Mär 2024  scripts_old_version
 # Container verlassen
 exit
 ```
-- Docker Stack anhalten und starten
+- Docker Stack anhalten und wieder starten
 
 ```bash
-docker compose up --force-recreate -d
+docker compose down
+docker compose up -d
 docker compose ps
 docker compose logs -f
 ```
 
-- Prüfen, ob die Startseite von bacularis erreichbar ist und testen die Funktion
+- Prüfen, ob die Startseite von bacularis erreichbar ist und die Funktion testen
 
 ```bash
 https://mydomain.de/web/

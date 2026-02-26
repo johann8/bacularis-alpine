@@ -5,18 +5,19 @@ LABEL maintainer="JH <jh@localhost>"
 ARG BUILD_DATE
 ARG NAME
 ARG VCS_REF
-ARG VERSION
+ARG BACULARIS_VERSION=5.11.0
+ARG BACULA_VERSION=15.0.3-r0
+ARG POSTGRES_VERSION=16
 
 LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.name=$NAME \
       org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.vcs-url="https://github.com/johann8/" \
-      org.label-schema.version=$VERSION
+      org.label-schema.vcs-url="https://github.com/johann8/"
 
-ENV BACULA_VERSION=15.0.3-r0
-ENV POSTGRES_VERSION=16
-ENV BACULARIS_VERSION=5.11.0
+ENV BACULA_VERSION=${BACULA_VERSION}
+ENV POSTGRES_VERSION=${POSTGRES_VERSION}
+ENV BACULARIS_VERSION=${BACULARIS_VERSION}
 ENV PACKAGE_NAME=standalone
 ENV PHP_VERSION=85
 ENV WEB_USER=nginx

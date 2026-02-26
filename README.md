@@ -38,7 +38,7 @@ Images are based on [Ubuntu 22](https://hub.docker.com/repository/docker/johann8
 <h2 align="center">Docker Image Alpine</h2>
 
 | ALpine version | Bacula version | Bacularis version | Docker alpine PSQL16  | Docker alpine PSQL17 | Size alpine |
-|:----:|:--------------:|:--------------:|:-----------------:|:---------------------:|:--------------------:|:-----------:|
+|:--------------:|:--------------:|:-----------------:|:---------------------:|:--------------------:|:-----------:|
 | [![Alpine Version](https://img.shields.io/badge/Alpine%20version-v3.23.0-blue.svg?style=flat-square)](https://alpinelinux.org/) | [![Bacula Version](https://img.shields.io/badge/Bacula%20version-15.03-seagreen.svg?style=flat-square)](https://www.bacula.org/) | [![Bacularis Version](https://img.shields.io/badge/Bacularis%20version-5.11.0-orange.svg?style=flat-square)](https://bacularis.app/) | [![Docker alpine PSQL16](https://img.shields.io/docker/v/johann8/bacularis/latest-alpine?logo=docker&style=flat-square&color=blue&sort=semver)](https://hub.docker.com/r/johann8/bacularis/tags "Version badge") | [![Docker alpine PSQL17](https://img.shields.io/docker/v/johann8/bacularis/latest-alpine-psql17?logo=docker&style=flat-square&color=blue&sort=semver)](https://hub.docker.com/r/johann8/bacularis/tags "Version badge") | ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/johann8/bacularis/latest-alpine?logo=docker&style=flat-square&color=blue&sort=semver) |
 
 <h2 align="center">Docker Image Ubuntu</h2>

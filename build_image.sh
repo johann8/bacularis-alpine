@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # set variables
-D_IMAGE_VERSION=5.11.1
+D_IMAGE_VERSION=6.0.0
 #PG_VERSION=psql16
 
 # create build docker image
 #docker build -f ./Dockerfile -t johann8/bacularis:${D_IMAGE_VERSION}-alpine . 2>&1 | tee ./build.log
 docker build \
-  --build-arg=BACULARIS_VERSION=5.11.0 \
+  --build-arg=BACULARIS_VERSION=6.0.0 \
   --build-arg=BACULA_VERSION=15.0.3-r0 \
   --build-arg=POSTGRES_VERSION=16 \
   --platform=linux/amd64 \

@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # set variables
-D_IMAGE_VERSION=6.1.0
+D_IMAGE_VERSION=6.2.0
 
 # create build docker image
 #docker build -f ./Dockerfile -t johann8/bacularis:${D_IMAGE_VERSION}-alpine . 2>&1 | tee ./build.log
 docker build \
-  --build-arg=BACULARIS_VERSION=6.1.0 \
+  --build-arg=BACULARIS_VERSION=6.2.0 \
   --build-arg=BACULA_VERSION=15.0.3-r0 \
   --build-arg=POSTGRES_VERSION=16 \
   --platform=linux/amd64 \

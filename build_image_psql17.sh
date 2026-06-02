@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # set variables
-D_IMAGE_VERSION=6.2.0
+D_IMAGE_VERSION=6.1.0.1
 PG_VERSION=psql17
 
 # build docker image
 docker build \
-  --build-arg=BACULARIS_VERSION=6.2.0 \
+  --build-arg=BACULARIS_VERSION=6.1.0.1 \
   --build-arg=BACULA_VERSION=15.0.3-r0 \
   --build-arg=POSTGRES_VERSION=17 \
   --platform=linux/amd64 \

@@ -53,10 +53,6 @@ Images are based on [Ubuntu 22](https://hub.docker.com/repository/docker/johann8
 |:---------:|:------:|:---------:|:------------:|:----------:|
 | [![Ubuntu Version](https://img.shields.io/badge/Ubuntu%20version-24.04-blue.svg?style=flat-square)](https://ubuntu.com/) | [![Bacula Version](https://img.shields.io/badge/Bacula%20version-15.03-seagreen.svg?style=flat-square)](https://www.bacula.org/) | [![Bacularis Version](https://img.shields.io/badge/Bacularis%20version-6.2.0-orange.svg?style=flat-square)](https://bacularis.app/) | [![Docker Ubuntu](https://img.shields.io/docker/v/johann8/bacularis/latest-ubuntu-24.04?logo=docker&style=flat-square&color=blue&sort=semver)](https://hub.docker.com/r/johann8/bacularis/tags "Version badge") | ![Docker Image Size](https://img.shields.io/docker/image-size/johann8/bacularis/latest-ubuntu-24.04?logo=docker&style=flat-square&color=blue&sort=semver) |
 
-| Ubuntu OS | Bacula | Bacularis | Docker image | Image size | pulls |
-|:---------:|:------:|:---------:|:------------:|:----------:|:-----:|
-| [![Ubuntu Version](https://img.shields.io/badge/Ubuntu%20version-24.04-blue.svg?style=flat-square)](https://ubuntu.com/) | [![Bacula Version](https://img.shields.io/badge/Bacula%20version-15.03-seagreen.svg?style=flat-square)](https://www.bacula.org/) | [![Bacularis Version](https://img.shields.io/badge/Bacularis%20version-6.2.0-orange.svg?style=flat-square)](https://bacularis.app/) | [![Docker Ubuntu](https://img.shields.io/docker/v/johann8/bacularis/latest-ubuntu-24.04?logo=docker&style=flat-square&color=blue&sort=semver)](https://hub.docker.com/r/johann8/bacularis/tags "Version badge") | ![Docker Image Size](https://img.shields.io/docker/image-size/johann8/bacularis/latest-ubuntu-24.04?logo=docker&style=flat-square&color=blue&sort=semver) | ![Docker Pulls](https://img.shields.io/docker/pulls/johann8/bacularis?logo=docker&label=pulls&style=flat-square&color=blue) |
-
 
 ## Bacula
 [Bacula](https://www.bacula.org/) is a set of Open Source, computer programs that permit you to manage backup, recovery, and verification of computer data across a network of computers.

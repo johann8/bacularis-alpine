@@ -1,4 +1,4 @@
-FROM alpine:3.23
+FROM alpine:3.24
 
 LABEL maintainer="JH <jh@localhost>"
 
@@ -7,7 +7,7 @@ ARG NAME
 ARG VCS_REF
 ARG BACULARIS_VERSION=6.2.1
 ARG BACULA_VERSION=15.0.3-r0
-ARG POSTGRES_VERSION=16
+ARG POSTGRES_VERSION=17
 
 LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.build-date=$BUILD_DATE \

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # set variables
-D_IMAGE_VERSION=6.2.1
+D_IMAGE_VERSION=6.2.1.1
 
 # create build docker image
 #docker build -f ./Dockerfile -t johann8/bacularis:${D_IMAGE_VERSION}-alpine . 2>&1 | tee ./build.log

@@ -1,19 +1,24 @@
-FROM alpine:3.24
+ARG BASE_IMAGE=alpine:3.24
 
-LABEL maintainer="JH <jh@localhost>"
+FROM ${BASE_IMAGE}
+
+LABEL maintainer="JH <jh@localhost>" \
+      Description="Docker container with Bacularis-APP based on Alpine Linux."
 
 ARG BUILD_DATE
 ARG NAME
 ARG VCS_REF
-ARG BACULARIS_VERSION=6.2.1
+ARG BACULARIS_VERSION=6.3.0
 ARG BACULA_VERSION=15.0.3-r0
 ARG POSTGRES_VERSION=17
 
 LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.name=$NAME \
+      org.label-schema.license=GPL-3.0 \
+      org.label-schema.name=bacularis-app \
       org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.vcs-url="https://github.com/johann8/"
+      org.label-schema.vcs-url="https://github.com/johann8/bacularis-alpine"
+
 
 ENV BACULA_VERSION=${BACULA_VERSION}
 ENV POSTGRES_VERSION=${POSTGRES_VERSION}

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # set variables
-D_IMAGE_VERSION=6.4.0
+D_IMAGE_VERSION=6.4.0.1
 D_IMAGE_TAG=alpine
 BASE_IMAGE=alpine:3.24
 

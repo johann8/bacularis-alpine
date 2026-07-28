@@ -52,6 +52,7 @@ RUN if [ "${PACKAGE_NAME}" = 'standalone' ] || [ "${PACKAGE_NAME}" = 'api-dir' ]
   && addgroup ${WEB_USER} bacula \
   && apk add --no-cache bash sudo \
   && apk add --no-cache \
+         php${PHP_VERSION} \
          php${PHP_VERSION}-bcmath \
          php${PHP_VERSION}-curl \
          php${PHP_VERSION}-dom \

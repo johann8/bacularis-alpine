@@ -1,12 +1,13 @@
 #!/bin/bash
 
 # set variables
-D_IMAGE_VERSION=6.3.0
+D_IMAGE_VERSION=6.4.0
 D_IMAGE_TAG=alpine
 BASE_IMAGE=alpine:3.24
 
-BACULARIS_VERSION=6.3.0
+BACULARIS_VERSION=6.4.0
 BACULA_VERSION=15.0.3-r0
+PHP_VERSION=85
 POSTGRES_VERSION=17
 
 
@@ -16,11 +17,13 @@ docker build \
   --build-arg=BASE_IMAGE=${BASE_IMAGE} \
   --build-arg=BACULARIS_VERSION=${BACULARIS_VERSION} \
   --build-arg=BACULA_VERSION=${BACULA_VERSION} \
+  --build-arg=PHP_VERSION=${PHP_VERSION} \
   --build-arg=POSTGRES_VERSION=${POSTGRES_VERSION} \
   --platform=linux/amd64 \
   --tag=johann8/bacularis:${D_IMAGE_VERSION}-${D_IMAGE_TAG}-psql${POSTGRES_VERSION} \
   --file=./Dockerfile . 2>&1 | tee ./build.log
 
+# check result
 _BUILD=$?
 
 # if build successful - create docker image tag
